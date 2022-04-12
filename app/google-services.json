@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "305810386995",
+    "project_id": "nft-marketplace-pam",
+    "storage_bucket": "nft-marketplace-pam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305810386995:android:de60264d6737dd0255b346",
+        "android_client_info": {
+          "package_name": "com.djevannn.nftmarketplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305810386995-ir9d65pecjhvt5nb1mtmtgr8g4cukcg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_M8xiHYnbGWZhR_t1eQDBZoEJm999jz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "305810386995-ir9d65pecjhvt5nb1mtmtgr8g4cukcg0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
