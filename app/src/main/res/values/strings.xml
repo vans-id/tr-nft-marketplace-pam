@@ -2,6 +2,7 @@
     <string name="app_name">NFT Marketplace</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
+    <string name="title_add">Create New NFT</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_detail">DetailActivity</string>
     <!-- Strings used for fragments for navigation -->
@@ -14,4 +15,13 @@
     <string name="hello_second_fragment">Hello second fragment. Arg:
         %1$s
     </string>
+    <string name="nft_title">NFT Title</string>
+    <string name="enter_nft_description">Enter NFT Description</string>
+    <string name="price_in_eth">Price in ETH</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="creator_fee">Creator Fee (%)</string>
+    <string name="create_nft">Create NFT</string>
+
+    <!--    Strings used for Add Fragment-->
+
 </resources>

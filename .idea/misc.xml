@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudio/TR_PAM/app/src/main/res/drawable/bg_edit_text.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/TR_PAM/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/AndroidStudio/TR_PAM/app/src/main/res/layout/fragment_add.xml" value="0.23168654173764908" />
+        <entry key="..\:/AndroidStudio/TR_PAM/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_collection.xml" value="0.14130434782608695" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_detail.xml" value="0.22" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_favorite.xml" value="0.14130434782608695" />
