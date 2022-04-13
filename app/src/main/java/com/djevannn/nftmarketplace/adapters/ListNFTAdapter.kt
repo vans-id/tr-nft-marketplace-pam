@@ -3,17 +3,22 @@ package com.djevannn.nftmarketplace.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.djevannn.nftmarketplace.R
 import com.djevannn.nftmarketplace.data.NFT
 
 class ListNFTAdapter :
-    RecyclerView.Adapter<ListNFTAdapter.ListViewHolder>() {
+    RecyclerView.Adapter<ListViewHolder>() {
 
     private var listNft = ArrayList<NFT>()
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
 
     fun setNFTs(data: List<NFT>?) {
         if (data == null) return
@@ -36,24 +41,29 @@ class ListNFTAdapter :
     ) {
         val (
             title,
-            imageUrl,
-            currentPrice,
+            description,
+            owners,
+            image_url,
+            current_price,
+            creator,
+            creator_fee,
+            is_sale
         ) = listNft[position]
 
         Glide.with(holder.itemView.context)
-            .load(imageUrl)
+            .load(image_url)
             .into(holder.ivNft)
         holder.tvTitle.text = title
-        holder.tvPrice.text = "$currentPrice ETH"
+        holder.tvPrice.text = "$current_price ETH"
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(
+                listNft[holder.adapterPosition]
+            )
+        }
     }
 
     override fun getItemCount(): Int = listNft.size
 
-    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(
-        itemView
-    ) {
-        var ivNft: ImageView = itemView.findViewById(R.id.iv_nft)
-        var tvTitle: TextView = itemView.findViewById(R.id.tv_title)
-        var tvPrice: TextView = itemView.findViewById(R.id.tv_price)
-    }
+
 }
