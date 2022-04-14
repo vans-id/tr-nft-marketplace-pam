@@ -15,6 +15,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg:
         %1$s
     </string>
+
+    <!--    Strings used for Add Fragment-->
     <string name="nft_title">NFT Title</string>
     <string name="enter_nft_description">Enter NFT Description</string>
     <string name="price_in_eth">Price in ETH</string>
@@ -22,6 +24,17 @@
     <string name="creator_fee">Creator Fee (%)</string>
     <string name="create_nft">Create NFT</string>
 
-    <!--    Strings used for Add Fragment-->
+    <!--    Strings used for Login Activity-->
+    <string name="login_to_your_account">Login to your personal account</string>
+    <string name="username">Username</string>
+    <string name="new_user">Doesn\'t have an account?</string>
+    <string name="register_now">Register Now!</string>
+    <string name="login">Login</string>
+    <string name="login_now">Login Now</string>
+    <string name="already_have_account">Already have account?</string>
+    <string name="register">Register</string>
+    <string name="register_new_account">Create your new account</string>
+    <string name="name">Full Name</string>
+
 
 </resources>
