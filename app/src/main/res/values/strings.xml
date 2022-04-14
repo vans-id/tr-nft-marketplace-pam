@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">NFT Marketplace</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Sedang Trending</string>
+    <string name="title_add">Buat NFT</string>
+    <string name="title_profile">Profil Saya</string>
     <string name="title_activity_detail">DetailActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

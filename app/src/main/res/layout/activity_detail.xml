@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_gray"
     tools:context=".ui.detail.DetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,11 +29,23 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
-            tools:src="@drawable/sample"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/sample" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:contentDescription="Favorite"
+            app:layout_anchorGravity="bottom|end"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_detail_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_detail_image"
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
 
         <TextView
             android:id="@+id/tv_detail_title"
@@ -40,12 +53,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            tools:text="Azumi #1234"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_500"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_detail_image" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_detail_image"
+            tools:text="Azumi #1234" />
 
         <ImageView
             android:id="@+id/imageFilterView"
@@ -61,12 +74,13 @@
             android:id="@+id/tv_detail_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            tools:text="100 ETH"
             android:layout_marginStart="8dp"
+            android:textColor="@color/dark_500"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageFilterView"
             app:layout_constraintStart_toEndOf="@+id/imageFilterView"
-            app:layout_constraintTop_toTopOf="@+id/imageFilterView" />
+            app:layout_constraintTop_toTopOf="@+id/imageFilterView"
+            tools:text="100 ETH" />
 
         <TextView
             android:id="@+id/textView3"
@@ -75,21 +89,22 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="Description"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textColor="@color/dark_500"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageFilterView" />
 
         <TextView
             android:id="@+id/tv_detail_description"
-            tools:text="Ini adalah sebuah deskripsi"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:textSize="16sp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:text="Ini adalah sebuah deskripsi" />
 
         <TextView
             android:id="@+id/textView4"
@@ -98,21 +113,23 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:text="Tentang Kreator"
-            android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textColor="@color/dark_500"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_description" />
 
         <TextView
             android:id="@+id/tv_detail_about"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            tools:text="Tentang kreator disini"
-            android:textSize="16sp"
+            android:layout_marginEnd="16dp"
+            android:lineSpacingMultiplier="1.5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:text="Tentang kreator disini" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -122,7 +139,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_about"
-            app:strokeColor="#e0e0e0"
+            app:strokeColor="@color/border_gray"
             app:strokeWidth="1dp">
 
             <LinearLayout

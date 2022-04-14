@@ -13,10 +13,18 @@
         android:theme="@style/Theme.NFTMarketplace">
         <activity
             android:name=".ui.collection.CollectionActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".ui.favorite.FavoriteActivity"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".ui.detail.DetailActivity"
             android:exported="false"

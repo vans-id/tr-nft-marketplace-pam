@@ -5,9 +5,9 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="15dp"
     app:cardElevation="0dp"
-    app:strokeColor="#e0e0e0"
+    app:strokeColor="@color/border_gray"
     app:strokeWidth="1dp"
     >
 
@@ -36,7 +36,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="#4567"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_500"
             android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

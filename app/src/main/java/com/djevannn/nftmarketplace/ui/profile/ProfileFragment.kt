@@ -1,13 +1,16 @@
 package com.djevannn.nftmarketplace.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.djevannn.nftmarketplace.databinding.FragmentProfileBinding
+import com.djevannn.nftmarketplace.ui.collection.CollectionActivity
+import com.djevannn.nftmarketplace.ui.detail.DetailActivity
+import com.djevannn.nftmarketplace.ui.favorite.FavoriteActivity
 
 class ProfileFragment : Fragment() {
 
@@ -28,13 +31,29 @@ class ProfileFragment : Fragment() {
             container,
             false
         )
-        val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        return binding.root
+    }
+
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        binding.btnToCollection.setOnClickListener {
+            val intent = Intent(
+                context,
+                CollectionActivity::class.java
+            )
+            startActivity(intent)
         }
-        return root
+        binding.btnToFavorite.setOnClickListener {
+            val intent = Intent(
+                context,
+                FavoriteActivity::class.java
+            )
+            startActivity(intent)
+        }
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroyView() {

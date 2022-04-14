@@ -16,7 +16,6 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -33,11 +32,11 @@ class DetailActivity : AppCompatActivity() {
                 .into(binding.ivDetailImage)
 
             binding.tvDetailTitle.text = data.title
-            binding.tvDetailDescription.text = data.description
             binding.tvDetailPrice.text = "${data.current_price} ETH"
 
             detailViewModel.creator.observe(this@DetailActivity) {
                 binding.tvDetailAbout.text = it.about
+                binding.tvDetailDescription.text = "Created by ${it.name}"
             }
             detailViewModel.isLoading.observe(this@DetailActivity) {
                 binding.pbDetail.visibility = when (it) {
