@@ -12,10 +12,10 @@ import com.djevannn.nftmarketplace.databinding.FragmentProfileBinding
 import com.djevannn.nftmarketplace.ui.collection.CollectionActivity
 import com.djevannn.nftmarketplace.ui.favorite.FavoriteActivity
 
+
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
-
     private val binding get() = _binding!!
 
     override fun onCreateView(

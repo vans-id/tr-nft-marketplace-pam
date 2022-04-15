@@ -2,12 +2,11 @@ package com.djevannn.nftmarketplace.ui.login
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -20,7 +19,10 @@ import com.djevannn.nftmarketplace.helper.ResponseCallback
 import com.djevannn.nftmarketplace.helper.UserPreference
 import com.djevannn.nftmarketplace.ui.register.RegisterActivity
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "settings"
+)
+
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
@@ -42,8 +44,13 @@ class LoginActivity : AppCompatActivity() {
         )[LoginViewModel::class.java]
 
         viewModel.getUser().observe(this) { user ->
-            if(user.isLogin){
-                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            if (user.isLogin) {
+                startActivity(
+                    Intent(
+                        this@LoginActivity,
+                        MainActivity::class.java
+                    )
+                )
             }
         }
     }
@@ -57,21 +64,30 @@ class LoginActivity : AppCompatActivity() {
             showLoading()
             btnLogin.setOnClickListener {
                 Log.d("TEST", "setAction: test")
-                viewModel.checkUser(etUsername.editText?.text.toString(),etPassword.editText?.text.toString(),
+                viewModel.checkUser(etUsername.editText?.text.toString(),
+                    etPassword.editText?.text.toString(),
                     object : ResponseCallback {
-                        override fun getCallback(msg: String, status: Boolean) {
-                            showDialogs(msg,status)
+                        override fun getCallback(
+                            msg: String,
+                            status: Boolean
+                        ) {
+                            showDialogs(msg, status)
                         }
                     })
             }
             tvRegister.setOnClickListener {
-                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+                startActivity(
+                    Intent(
+                        this@LoginActivity,
+                        RegisterActivity::class.java
+                    )
+                )
             }
         }
     }
 
     private fun showLoading() {
-        viewModel.isLoading.observe(this){
+        viewModel.isLoading.observe(this) {
             binding.apply {
                 when {
                     it -> progressBar.visibility = View.VISIBLE
@@ -82,14 +98,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showDialogs(msg: String, status: Boolean) {
-        if (status){
+        if (status) {
             AlertDialog.Builder(this).apply {
                 setTitle("Yay !")
                 val message = getString(R.string.login_success)
                 setMessage(message)
                 setPositiveButton(getString(R.string.next)) { _, _ ->
-                    val intent = Intent(context, LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    val intent =
+                        Intent(context, LoginActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
                     finish()
                 }

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -20,7 +19,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,12 +45,12 @@ class HomeFragment : Fragment() {
             adapter = listNFTAdapter
         }
 
-        homeViewModel.fetchAllNFT()
-        homeViewModel.listNft.observe(viewLifecycleOwner) {
+        viewModel.fetchAllNFT()
+        viewModel.listNft.observe(viewLifecycleOwner) {
             listNFTAdapter.setNFTs(it)
             listNFTAdapter.notifyDataSetChanged()
         }
-        homeViewModel.isLoading.observe(viewLifecycleOwner) {
+        viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.pbHome.visibility = when (it) {
                 true -> View.VISIBLE
                 false -> View.GONE

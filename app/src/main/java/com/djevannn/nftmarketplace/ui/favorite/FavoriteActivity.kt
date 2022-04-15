@@ -1,20 +1,30 @@
 package com.djevannn.nftmarketplace.ui.favorite
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.adapters.ListNFTAdapter
 import com.djevannn.nftmarketplace.adapters.OnItemClickCallback
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.ActivityFavoriteBinding
+import com.djevannn.nftmarketplace.helper.UserPreference
 import com.djevannn.nftmarketplace.ui.detail.DetailActivity
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "settings"
+)
 
 class FavoriteActivity : AppCompatActivity() {
 
-    private val favoriteViewModel: FavoriteViewModel by viewModels()
+    private lateinit var viewModel: FavoriteViewModel
     private lateinit var binding: ActivityFavoriteBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +35,11 @@ class FavoriteActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Favorit"
 
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(UserPreference.getInstance(dataStore))
+        )[FavoriteViewModel::class.java]
+
         val listNFTAdapter = ListNFTAdapter()
         with(binding.rvFavorite) {
             layoutManager =
@@ -33,11 +48,11 @@ class FavoriteActivity : AppCompatActivity() {
             adapter = listNFTAdapter
         }
 
-        favoriteViewModel.favoriteList.observe(this) {
+        viewModel.favoriteList.observe(this) {
             listNFTAdapter.setNFTs(it)
             listNFTAdapter.notifyDataSetChanged()
         }
-        favoriteViewModel.isLoading.observe(this) {
+        viewModel.isLoading.observe(this) {
             binding.pbFavorite.visibility = when (it) {
                 true -> View.VISIBLE
                 false -> View.GONE
@@ -54,5 +69,10 @@ class FavoriteActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

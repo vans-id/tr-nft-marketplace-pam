@@ -1,21 +1,21 @@
 package com.djevannn.nftmarketplace.ui.detail
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.djevannn.nftmarketplace.data.Creator
 import com.djevannn.nftmarketplace.data.NFT
+import com.djevannn.nftmarketplace.data.User
+import com.djevannn.nftmarketplace.helper.UserPreference
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-class DetailViewModel : ViewModel() {
-
-    private val _detailNFT = MutableLiveData<NFT>()
-    val detailNFT: LiveData<NFT> = _detailNFT
+class DetailViewModel(private val pref: UserPreference) :
+    ViewModel() {
 
     private val _creator = MutableLiveData<Creator>()
     val creator: LiveData<Creator> = _creator
@@ -30,10 +30,20 @@ class DetailViewModel : ViewModel() {
     val message: LiveData<String> = _message
 
     private val db = Firebase.database.reference
+    private lateinit var user: User
+
+    init {
+        viewModelScope.launch {
+            pref.getUser().collect {
+                user = it
+            }
+        }
+    }
 
     fun buyNFT(item: NFT) {
         _isLoading.value = true
-        item.owner = "djevann"
+        // get user here
+        item.owner = user.username
 
         val db = Firebase.database.reference
         db.child("assets").child(item.token_id.toString())
@@ -90,7 +100,7 @@ class DetailViewModel : ViewModel() {
 
     fun getFavoriteStatus(item: NFT) {
         // get user here
-        db.child("favorites").child("djevann")
+        db.child("favorites").child(user.username)
             .child(item.token_id.toString()).get()
             .addOnSuccessListener {
                 _isFavorite.value =
@@ -104,7 +114,7 @@ class DetailViewModel : ViewModel() {
     private fun addToFavorite(item: NFT) {
         // get user here
         db.child("favorites")
-            .child("djevann")
+            .child(user.username)
             .child(item.token_id.toString()).setValue(item)
             .addOnSuccessListener {
                 _message.value = "Berhasil menambahkan ke favorit"
@@ -116,7 +126,7 @@ class DetailViewModel : ViewModel() {
 
     private fun removeFromFavorite(item: NFT) {
         db.child("favorites")
-            .child("djevann")
+            .child(user.username)
             .child(item.token_id.toString()).removeValue()
             .addOnSuccessListener {
                 _message.value = "Berhasil menghapus dari favorit"

@@ -1,21 +1,32 @@
 package com.djevannn.nftmarketplace.ui.detail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.djevannn.nftmarketplace.R
+import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.ActivityDetailBinding
+import com.djevannn.nftmarketplace.helper.UserPreference
+
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "settings"
+)
 
 class DetailActivity : AppCompatActivity() {
 
-    private val detailViewModel: DetailViewModel by viewModels()
+    private lateinit var viewModel: DetailViewModel
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +39,14 @@ class DetailActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(UserPreference.getInstance(dataStore))
+        )[DetailViewModel::class.java]
+
         if (data != null) {
-            detailViewModel.getCreatorData(data.creator)
-            detailViewModel.getFavoriteStatus(data)
+            viewModel.getCreatorData(data.creator)
+            viewModel.getFavoriteStatus(data)
 
             Glide.with(this@DetailActivity)
                 .load(data.image_url)
@@ -48,10 +64,10 @@ class DetailActivity : AppCompatActivity() {
                 showConfirmDialog(data)
             }
             binding.fabDetail.setOnClickListener {
-                detailViewModel.onFavoriteClicked(data)
+                viewModel.onFavoriteClicked(data)
             }
 
-            detailViewModel.creator.observe(this@DetailActivity) {
+            viewModel.creator.observe(this@DetailActivity) {
                 binding.tvDetailAbout.text = it.about
                 binding.tvDetailDescription.text =
                     "Created by ${it.name}"
@@ -59,20 +75,20 @@ class DetailActivity : AppCompatActivity() {
                     .load(it.image_url)
                     .into(binding.ivDetailCreatorImage)
             }
-            detailViewModel.isLoading.observe(this@DetailActivity) {
+            viewModel.isLoading.observe(this@DetailActivity) {
                 binding.pbDetail.visibility = when (it) {
                     true -> View.VISIBLE
                     false -> View.GONE
                 }
             }
-            detailViewModel.isFavorite.observe(this@DetailActivity) {
+            viewModel.isFavorite.observe(this@DetailActivity) {
                 val image = when (it) {
                     true -> R.drawable.ic_baseline_favorite_24
                     false -> R.drawable.ic_baseline_favorite_border_24
                 }
                 binding.fabDetail.setImageResource(image)
             }
-            detailViewModel.message.observe(this@DetailActivity) {
+            viewModel.message.observe(this@DetailActivity) {
                 Toast.makeText(
                     this@DetailActivity,
                     it.toString(),
@@ -84,9 +100,12 @@ class DetailActivity : AppCompatActivity() {
 
     private fun showConfirmDialog(data: NFT) {
         val builder = AlertDialog.Builder(this, 0).create()
-        val view = layoutInflater.inflate(R.layout.custom_dialog, null)
-        val tvTitle = view.findViewById<TextView>(R.id.tv_confirm_title)
-        val tvPrice = view.findViewById<TextView>(R.id.tv_confirm_price)
+        val view =
+            layoutInflater.inflate(R.layout.custom_dialog, null)
+        val tvTitle =
+            view.findViewById<TextView>(R.id.tv_confirm_title)
+        val tvPrice =
+            view.findViewById<TextView>(R.id.tv_confirm_price)
         val btnConfirm = view.findViewById<Button>(R.id.btn_confirm)
         val btnCancel = view.findViewById<Button>(R.id.btn_cancel)
 
@@ -95,7 +114,7 @@ class DetailActivity : AppCompatActivity() {
         tvTitle.text = data.title + data.token_id
         tvPrice.text = "${data.current_price} ETH"
         btnConfirm.setOnClickListener {
-            detailViewModel.buyNFT(data)
+            viewModel.buyNFT(data)
             builder.dismiss()
         }
         btnCancel.setOnClickListener {
@@ -103,6 +122,10 @@ class DetailActivity : AppCompatActivity() {
         }
 
         builder.show()
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

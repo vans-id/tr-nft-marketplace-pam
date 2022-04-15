@@ -1,20 +1,30 @@
 package com.djevannn.nftmarketplace.ui.collection
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.adapters.ListNFTAdapter
 import com.djevannn.nftmarketplace.adapters.OnItemClickCallback
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.ActivityCollectionBinding
+import com.djevannn.nftmarketplace.helper.UserPreference
 import com.djevannn.nftmarketplace.ui.detail.DetailActivity
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "settings"
+)
 
 class CollectionActivity : AppCompatActivity() {
 
-    private val collectionViewModel: CollectionViewModel by viewModels()
+    private lateinit var viewModel: CollectionViewModel
     private lateinit var binding: ActivityCollectionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +35,11 @@ class CollectionActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Koleksi"
 
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(UserPreference.getInstance(dataStore))
+        )[CollectionViewModel::class.java]
+
         val listNFTAdapter = ListNFTAdapter()
         with(binding.rvCollection) {
             layoutManager =
@@ -33,11 +48,11 @@ class CollectionActivity : AppCompatActivity() {
             adapter = listNFTAdapter
         }
 
-        collectionViewModel.collectionList.observe(this) {
+        viewModel.collectionList.observe(this) {
             listNFTAdapter.setNFTs(it)
             listNFTAdapter.notifyDataSetChanged()
         }
-        collectionViewModel.isLoading.observe(this) {
+        viewModel.isLoading.observe(this) {
             binding.pbCollection.visibility = when (it) {
                 true -> View.VISIBLE
                 false -> View.GONE
@@ -54,5 +69,10 @@ class CollectionActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }
