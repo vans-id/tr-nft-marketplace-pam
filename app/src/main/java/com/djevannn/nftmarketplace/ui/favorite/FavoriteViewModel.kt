@@ -1,24 +1,38 @@
-package com.djevannn.nftmarketplace.ui.home
+package com.djevannn.nftmarketplace.ui.favorite
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.djevannn.nftmarketplace.data.NFT
+import com.djevannn.nftmarketplace.data.User
+import com.djevannn.nftmarketplace.helper.UserPreference
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class FavoriteViewModel(private val pref: UserPreference) : ViewModel() {
 
-    private val _listNft = MutableLiveData<List<NFT>>()
-    val listNft: LiveData<List<NFT>> = _listNft
+    private val _favoriteList = MutableLiveData<List<NFT>>()
+    val favoriteList: LiveData<List<NFT>> = _favoriteList
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun fetchAllNFT() {
+    private lateinit var user: User
+
+    init {
+        viewModelScope.launch {
+            pref.getUser().collect {
+                user = it
+                fetchAllFavorites()
+            }
+        }
+
+    }
+
+    private fun fetchAllFavorites() {
         _isLoading.value = true
 
         val db = Firebase.database.reference
@@ -31,7 +45,7 @@ class HomeViewModel : ViewModel() {
                     if (product != null) res.add(product)
                 }
 
-                _listNft.value = res
+                _favoriteList.value = res
                 _isLoading.value = false
             }
 
@@ -39,8 +53,9 @@ class HomeViewModel : ViewModel() {
                 _isLoading.value = false
             }
         }
-        db.child("assets").addValueEventListener(nftListener)
-
-
+        // dapatkan username yang login disini
+        db.child("favorites").child(user.username)
+            .addValueEventListener(nftListener)
     }
+
 }

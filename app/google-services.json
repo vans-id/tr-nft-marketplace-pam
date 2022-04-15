@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "305810386995",
+    "firebase_url": "https://nft-marketplace-pam-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "nft-marketplace-pam",
     "storage_bucket": "nft-marketplace-pam.appspot.com"
   },

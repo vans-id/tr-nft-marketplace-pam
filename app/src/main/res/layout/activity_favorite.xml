@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.favorite.FavoriteActivity">
 
     <ProgressBar
-        android:id="@+id/pb_home"
+        android:id="@+id/pb_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_nfts"
+        android:id="@+id/rv_favorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,6 +1,48 @@
 <resources>
     <string name="app_name">NFT Marketplace</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Sedang Trending</string>
+    <string name="title_add">Buat NFT</string>
+    <string name="title_profile">Profil Saya</string>
+    <string name="title_activity_detail">DetailActivity</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg:
+        %1$s
+    </string>
+
+    <!--    Strings used for Confirm Dialog -->
+    <string name="confirm_buy">Konfirmasi</string>
+    <string name="cancel_buy">batal</string>
+
+    <!--    Strings used for Add Fragment-->
+    <string name="nft_title">NFT Title</string>
+    <string name="enter_nft_description">Enter NFT Description</string>
+    <string name="price_in_eth">Price in ETH</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="creator_fee">Creator Fee (%)</string>
+    <string name="create_nft">Create NFT</string>
+
+    <!--    Strings used for Login Activity-->
+    <string name="login_to_your_account">Login to your personal account</string>
+    <string name="username">Username</string>
+    <string name="new_user">Doesn\'t have an account?</string>
+    <string name="register_now">Register Now!</string>
+    <string name="login">Login</string>
+    <string name="login_now">Login Now</string>
+    <string name="already_have_account">Already have account?</string>
+    <string name="register">Register</string>
+    <string name="register_new_account">Create your new account</string>
+    <string name="name">Full Name</string>
+    <string name="password">Password</string>
+    <string name="register_success">Register new account Success!</string>
+    <string name="register_error">Register new account failed!</string>
+    <string name="repeat">Repeat</string>
+    <string name="login_success">Login Success,You will be redirect to home page</string>
+    <string name="login_error">Login Error, please recheck your account detail again</string>
 </resources>
