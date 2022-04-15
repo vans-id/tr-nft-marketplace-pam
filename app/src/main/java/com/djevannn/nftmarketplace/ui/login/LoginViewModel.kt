@@ -1,19 +1,15 @@
 package com.djevannn.nftmarketplace.ui.login
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import com.djevannn.nftmarketplace.data.NFT
+import androidx.lifecycle.*
 import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.helper.ResponseCallback
 import com.djevannn.nftmarketplace.helper.UserPreference
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.launch
 
 class LoginViewModel(private val pref: UserPreference) : ViewModel(){
     private val _isLoading = MutableLiveData<Boolean>()
@@ -25,66 +21,39 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel(){
 
     fun checkUser(username:String, password:String, responseCallback: ResponseCallback) {
         _isLoading.value = true
-
-        val db = Firebase.database.reference
-        val userListener = object : ValueEventListener {
-            override fun onDataChange(usernameSnapshot: DataSnapshot) {
-
-                if(usernameSnapshot.exists()) {
-                    db.child("password")
-                        .equalTo(password)
-                        .addValueEventListener(object : ValueEventListener{
-                            override fun onDataChange(passwordSnapshot: DataSnapshot) {
-                                if(passwordSnapshot.exists()) {
-                                    // cek password
-                                    Log.d("CEK DATA ATAS", usernameSnapshot.toString())
-                                    responseCallback.getCallback("User ditemukan!", true)
-                                }
-                            }
-
-                            override fun onCancelled(error: DatabaseError) {
-                                Log.d("onCanceledAtas", "onCancelled: $error")
-                            }
-
-                        })
-                    Log.d("CEK DATA", usernameSnapshot.exists().toString())
-//                    responseCallback.getCallback("User ditemukan!", true)
+        val db = FirebaseDatabase.getInstance().getReference("users")
+        db.addListenerForSingleValueEvent(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (data in snapshot.children) {
+                    if (data.child("username").value == username && data.child("password").value == password) {
+                        responseCallback.getCallback("User ditemukan!", true)
+                        val user = User(
+                            data.child("name").value.toString(),
+                            data.child("username").value.toString(),
+                            data.child("password").value.toString(),
+                            data.child("wallet").value.toString(),
+                            data.child("created_at").value.toString(),
+                            data.child("photo_url").value.toString(),
+                            true,
+                        )
+                        saveUser(user)
+                        _isLoading.value = false
+                    }
                 }
-                Log.d("CEK DATA", usernameSnapshot.exists().toString())
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.d("onCanceledBawah", "onCancelled: $error")
+                Log.d("Get Data bawah", error.toString())
+                responseCallback.getCallback("User tidak ditemukan!", false)
+                _isLoading.value = false
             }
-        }
-
-        db.child("users").orderByChild("username")
-            .equalTo(username)
-            .addValueEventListener(userListener)
-
-
-
-//        val userListener = object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                val res = ArrayList<NFT>()
-//                responseCallback.getCallback("Success", true)
-//                for (snapshot in dataSnapshot.children) {
-//                    val product = snapshot.getValue(NFT::class.java)
-//                    Log.d("ViewModel", product.toString())
-//                    if (product != null) res.add(product)
-//                }
-//
-//                _listNft.value = res
-//                _isLoading.value = false
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                Log.d("ViewModel", databaseError.toString())
-//                _isLoading.value = false
-//            }
-//        }
-//        db.child("users").addValueEventListener(userListener)
-
-
+        })
     }
+
+    private fun saveUser(user: User ) {
+        viewModelScope.launch {
+            pref.saveUser(user)
+        }
+    }
+
 }

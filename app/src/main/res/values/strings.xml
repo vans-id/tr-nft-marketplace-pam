@@ -35,6 +35,12 @@
     <string name="register">Register</string>
     <string name="register_new_account">Create your new account</string>
     <string name="name">Full Name</string>
+    <string name="password">Password</string>
+    <string name="register_success">Register new account Success!</string>
+    <string name="register_error">Register new account failed!</string>
+    <string name="repeat">Repeat</string>
+    <string name="login_success">Login Success,You will be redirect to home page</string>
+    <string name="login_error">Login Error, please recheck your account detail again</string>
 
 
 </resources>

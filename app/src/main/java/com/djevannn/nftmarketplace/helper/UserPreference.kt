@@ -14,10 +14,13 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     fun getUser(): Flow<User> {
         return dataStore.data.map { preferences ->
             User(
-                preferences[NAME_KEY] ?:"",
+                preferences[NAME_KEY] ?: "",
                 preferences[USERNAME_KEY] ?:"",
                 preferences[PASSWORD_KEY] ?:"",
-                preferences[STATE_KEY] ?: false
+                preferences[WALLET_KEY] ?: "",
+                preferences[CREATED_AT] ?: "",
+                preferences[PHOTO_URL] ?: "",
+                preferences[LOGIN_STATUS] ?: false
             )
         }
     }
@@ -27,13 +30,16 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[NAME_KEY] = user.name
             preferences[USERNAME_KEY] = user.username
             preferences[PASSWORD_KEY] = user.password
-            preferences[STATE_KEY] = user.isLogin
+            preferences[WALLET_KEY] = user.wallet
+            preferences[CREATED_AT] = user.created_at
+            preferences[PHOTO_URL] = user.photo_url
+            preferences[LOGIN_STATUS] = user.isLogin
         }
     }
 
     suspend fun login() {
         dataStore.edit { preferences ->
-            preferences[STATE_KEY] = true
+            preferences[LOGIN_STATUS] = true
         }
     }
 
@@ -42,7 +48,10 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[NAME_KEY] = ""
             preferences[USERNAME_KEY] = ""
             preferences[PASSWORD_KEY] = ""
-            preferences[STATE_KEY] = false
+            preferences[WALLET_KEY] = ""
+            preferences[PHOTO_URL] = ""
+            preferences[CREATED_AT] = ""
+            preferences[LOGIN_STATUS] = false
         }
     }
 
@@ -53,7 +62,10 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val NAME_KEY = stringPreferencesKey("name")
         private val USERNAME_KEY = stringPreferencesKey("username")
         private val PASSWORD_KEY = stringPreferencesKey("password")
-        private val STATE_KEY = booleanPreferencesKey("state")
+        private val LOGIN_STATUS = booleanPreferencesKey("login_status")
+        private val WALLET_KEY = stringPreferencesKey("wallet")
+        private val PHOTO_URL = stringPreferencesKey("photo")
+        private val CREATED_AT = stringPreferencesKey("created_at")
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {
