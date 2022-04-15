@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.djevannn.nftmarketplace.databinding.FragmentProfileBinding
 import com.djevannn.nftmarketplace.ui.collection.CollectionActivity
-import com.djevannn.nftmarketplace.ui.detail.DetailActivity
 import com.djevannn.nftmarketplace.ui.favorite.FavoriteActivity
 
 class ProfileFragment : Fragment() {
@@ -31,6 +31,11 @@ class ProfileFragment : Fragment() {
             container,
             false
         )
+
+        val textView: TextView = binding.textNotifications
+        notificationsViewModel.text.observe(viewLifecycleOwner) {
+            textView.text = it
+        }
 
         return binding.root
     }
