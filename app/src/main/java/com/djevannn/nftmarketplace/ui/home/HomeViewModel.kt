@@ -29,7 +29,6 @@ class HomeViewModel : ViewModel() {
 
                 for (snapshot in dataSnapshot.children) {
                     val product = snapshot.getValue(NFT::class.java)
-                    Log.d("ViewModel", product.toString())
                     if (product != null) res.add(product)
                 }
 
@@ -38,7 +37,6 @@ class HomeViewModel : ViewModel() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.d("ViewModel", databaseError.toString())
                 _isLoading.value = false
             }
         }

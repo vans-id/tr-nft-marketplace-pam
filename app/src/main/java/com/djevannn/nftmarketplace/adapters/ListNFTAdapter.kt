@@ -41,19 +41,17 @@ class ListNFTAdapter :
     ) {
         val (
             title,
-            description,
-            owners,
+            _,
             image_url,
             current_price,
-            creator,
-            creator_fee,
-            is_sale
+            _,
+            token_id
         ) = listNft[position]
 
         Glide.with(holder.itemView.context)
             .load(image_url)
             .into(holder.ivNft)
-        holder.tvTitle.text = title
+        holder.tvTitle.text = "$title$token_id"
         holder.tvPrice.text = "$current_price ETH"
 
         holder.itemView.setOnClickListener {

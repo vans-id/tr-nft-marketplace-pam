@@ -14,4 +14,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg:
         %1$s
     </string>
+    <string name="confirm_buy">Konfirmasi</string>
+    <string name="cancel_buy">batal</string>
 </resources>
