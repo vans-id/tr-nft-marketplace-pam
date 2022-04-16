@@ -30,6 +30,9 @@ class ViewModelFactory(private val pref: UserPreference) :
             modelClass.isAssignableFrom(CollectionViewModel::class.java) -> {
                 CollectionViewModel(pref) as T
             }
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> {
+                MainViewModel(pref) as T
+            }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
