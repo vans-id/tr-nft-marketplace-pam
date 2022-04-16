@@ -20,13 +20,13 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel(){
     }
 
     fun checkUser(username:String, password:String, responseCallback: ResponseCallback) {
+        var isFound = false
         _isLoading.value = true
         val db = FirebaseDatabase.getInstance().getReference("users")
         db.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
                     if (data.child("username").value == username && data.child("password").value == password) {
-                        responseCallback.getCallback("User ditemukan!", true)
                         val user = User(
                             data.child("name").value.toString(),
                             data.child("username").value.toString(),
@@ -37,6 +37,7 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel(){
                             true,
                         )
                         saveUser(user)
+                        isFound = true
                         _isLoading.value = false
                     }
                 }
@@ -48,6 +49,14 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel(){
                 _isLoading.value = false
             }
         })
+
+        if(isFound){
+            responseCallback.getCallback("User ditemukan!", true)
+            _isLoading.value = false
+        } else {
+            responseCallback.getCallback("User tidak ditemukan! / salah", false)
+            _isLoading.value = false
+        }
     }
 
     private fun saveUser(user: User ) {
