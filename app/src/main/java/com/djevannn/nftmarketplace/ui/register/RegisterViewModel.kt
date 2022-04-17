@@ -32,29 +32,27 @@ class RegisterViewModel(private val pref: UserPreference) :
         _isLoading.value = true
 //        checkUser(username)
 
-            val dateInString = getCurrentDate()
-            val ref = FirebaseDatabase.getInstance().getReference("users")
-            val userId = ref.push().key
-            val user = UserRegist(
-                name,
-                username,
-                password,
-                "",
-                dateInString,
-                "",
-            )
-            if (userId != null) {
-                ref.child(userId).setValue(user).apply {
-                    addOnCompleteListener {
-                        callback.getCallback("", true)
-                    }
-                    addOnCanceledListener {
-                        callback.getCallback("", false)
-                    }
+        val dateInString = getCurrentDate()
+        val ref = FirebaseDatabase.getInstance().getReference("users")
+        val userId = ref.push().key
+        val user = UserRegist(
+            name = name,
+            username = username,
+            password = password,
+            created_at = dateInString
+        )
+        if (userId != null) {
+            ref.child(userId).setValue(user).apply {
+                addOnCompleteListener {
+                    callback.getCallback("", true)
                 }
-                _isLoading.value = false
+                addOnCanceledListener {
+                    callback.getCallback("", false)
+                }
             }
             _isLoading.value = false
+        }
+        _isLoading.value = false
 
     }
 }

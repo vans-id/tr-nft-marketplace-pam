@@ -79,7 +79,7 @@ class DetailViewModel(private val pref: UserPreference) :
                 _isLoading.value = false
             }
         }
-        db.child("creators").orderByChild("name")
+        db.child("users").orderByChild("username")
             .equalTo(creator)
             .addValueEventListener(nftListener)
     }

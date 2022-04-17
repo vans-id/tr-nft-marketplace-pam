@@ -11,12 +11,14 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     fun getUser(): Flow<User> {
         return dataStore.data.map { preferences ->
             User(
-                preferences[NAME_KEY] ?: "",
-                preferences[USERNAME_KEY] ?:"",
-                preferences[PASSWORD_KEY] ?:"",
-                preferences[WALLET_KEY] ?: "",
+                preferences[ABOUT] ?: "",
+                preferences[BALANCE] ?: 0.0,
                 preferences[CREATED_AT] ?: "",
+                preferences[NAME_KEY] ?: "",
+                preferences[PASSWORD_KEY] ?: "",
                 preferences[PHOTO_URL] ?: "",
+                preferences[USERNAME_KEY] ?: "",
+                preferences[WALLET_KEY] ?: "",
                 preferences[LOGIN_STATUS] ?: false
             )
         }
@@ -31,6 +33,8 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[CREATED_AT] = user.created_at
             preferences[PHOTO_URL] = user.photo_url
             preferences[LOGIN_STATUS] = user.isLogin
+            preferences[ABOUT] = user.about
+            preferences[BALANCE] = user.balance
         }
     }
 
@@ -61,6 +65,8 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
             preferences[PHOTO_URL] = ""
             preferences[CREATED_AT] = ""
             preferences[LOGIN_STATUS] = false
+            preferences[ABOUT] = ""
+            preferences[BALANCE] = 0.0
         }
     }
 
@@ -71,10 +77,14 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val NAME_KEY = stringPreferencesKey("name")
         private val USERNAME_KEY = stringPreferencesKey("username")
         private val PASSWORD_KEY = stringPreferencesKey("password")
-        private val LOGIN_STATUS = booleanPreferencesKey("login_status")
+        private val LOGIN_STATUS =
+            booleanPreferencesKey("login_status")
         private val WALLET_KEY = stringPreferencesKey("wallet")
         private val PHOTO_URL = stringPreferencesKey("photo")
         private val CREATED_AT = stringPreferencesKey("created_at")
+        private val ABOUT = stringPreferencesKey("about")
+        private val BALANCE = doublePreferencesKey("balance")
+
         private val THEME_KEY = intPreferencesKey("theme_setting")
 
 
