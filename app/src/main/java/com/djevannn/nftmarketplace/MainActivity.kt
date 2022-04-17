@@ -21,12 +21,16 @@ import com.djevannn.nftmarketplace.helper.UserPreference
 import com.djevannn.nftmarketplace.ui.login.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "settings"
+)
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var user : User
+    private lateinit var user: User
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -60,12 +64,14 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.getUser().observe(this) {
             user = User(
-                it.name,
-                it.username,
-                it.password,
-                it.wallet,
+                it.about,
+                it.balance,
                 it.created_at,
+                it.name,
+                it.password,
                 it.photo_url,
+                it.username,
+                it.wallet,
                 it.isLogin,
             )
             if (!it.isLogin) {

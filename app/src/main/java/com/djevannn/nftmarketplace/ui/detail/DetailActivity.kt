@@ -72,7 +72,7 @@ class DetailActivity : AppCompatActivity() {
                 binding.tvDetailDescription.text =
                     "Created by ${it.name}"
                 Glide.with(this@DetailActivity)
-                    .load(it.image_url)
+                    .load(it.photo_url)
                     .into(binding.ivDetailCreatorImage)
             }
             viewModel.isLoading.observe(this@DetailActivity) {

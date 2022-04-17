@@ -1,8 +1,8 @@
 package com.djevannn.nftmarketplace.setting
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -13,7 +13,9 @@ import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.databinding.ActivitySettingBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "settings"
+)
 
 class SettingActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingBinding
@@ -36,8 +38,6 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-
-
         binding.themeContainer.setOnCheckedChangeListener { _, id ->
             when (id) {
                 binding.rbAuto.id -> viewModel.saveThemeSetting(0)
@@ -53,21 +53,27 @@ class SettingActivity : AppCompatActivity() {
             ViewModelFactory(UserPreference.getInstance(dataStore))
         )[SettingViewModel::class.java]
 
-        viewModel.getThemeSetting().observe(this, {
+        viewModel.getThemeSetting().observe(this) {
             when (it) {
                 0 -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                    )
                     binding.rbAuto.isChecked = true
                 }
                 1 -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_NO
+                    )
                     binding.rbLight.isChecked = true
                 }
                 2 -> {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_YES
+                    )
                     binding.rbDark.isChecked = true
                 }
             }
-        })
+        }
     }
 }

@@ -6,16 +6,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.djevannn.nftmarketplace.R
 import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.databinding.FragmentProfileBinding
@@ -32,8 +29,8 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private lateinit var user : User
-    private lateinit var notificationsViewModel : ProfileViewModel
+    private lateinit var user: User
+    private lateinit var notificationsViewModel: ProfileViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,7 +39,11 @@ class ProfileFragment : Fragment() {
         notificationsViewModel =
             ViewModelProvider(
                 this,
-                ViewModelFactory(UserPreference.getInstance(requireContext().dataStore))
+                ViewModelFactory(
+                    UserPreference.getInstance(
+                        requireContext().dataStore
+                    )
+                )
             )[ProfileViewModel::class.java]
 
         _binding = FragmentProfileBinding.inflate(
@@ -54,9 +55,10 @@ class ProfileFragment : Fragment() {
         notificationsViewModel.getUser().observe(viewLifecycleOwner) {
             this.user = it
             binding.apply {
+                tvWallet.text = it.wallet
                 tvName.text = it.name
                 tvWallet.text = it.wallet
-                tvEth.text = "99 ETH"
+                tvEth.text = it.balance.toString() + "ETH"
                 Glide.with(root)
                     .load(it.photo_url)
                     .apply(RequestOptions().override(300, 300))
@@ -93,8 +95,8 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
         binding.btnLogout.setOnClickListener {
-           notificationsViewModel.logout()
-           activity?.finish()
+            notificationsViewModel.logout()
+            activity?.finish()
         }
         super.onViewCreated(view, savedInstanceState)
     }

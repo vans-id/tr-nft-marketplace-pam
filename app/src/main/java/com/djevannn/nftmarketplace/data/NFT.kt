@@ -12,4 +12,3 @@ data class NFT(
     var creator: String = "",
     var token_id: Int = 0,
 ): Parcelable
-
