@@ -1,30 +1,49 @@
 package com.djevannn.nftmarketplace.ui.profile
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.djevannn.nftmarketplace.R
+import com.djevannn.nftmarketplace.ViewModelFactory
+import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.databinding.FragmentProfileBinding
+import com.djevannn.nftmarketplace.helper.UserPreference
+import com.djevannn.nftmarketplace.setting.SettingActivity
 import com.djevannn.nftmarketplace.ui.collection.CollectionActivity
 import com.djevannn.nftmarketplace.ui.favorite.FavoriteActivity
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+    name = "settings"
+)
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var user : User
+    private lateinit var notificationsViewModel : ProfileViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
+        notificationsViewModel =
+            ViewModelProvider(
+                this,
+                ViewModelFactory(UserPreference.getInstance(requireContext().dataStore))
+            )[ProfileViewModel::class.java]
 
         _binding = FragmentProfileBinding.inflate(
             inflater,
@@ -32,9 +51,17 @@ class ProfileFragment : Fragment() {
             false
         )
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        notificationsViewModel.getUser().observe(viewLifecycleOwner) {
+            this.user = it
+            binding.apply {
+                tvName.text = it.name
+                tvWallet.text = it.wallet
+                tvEth.text = "99 ETH"
+                Glide.with(root)
+                    .load(it.photo_url)
+                    .apply(RequestOptions().override(300, 300))
+                    .into(ivAvatar)
+            }
         }
 
         return binding.root
@@ -44,19 +71,30 @@ class ProfileFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?
     ) {
-        binding.btnToCollection.setOnClickListener {
+        binding.btnCollection.setOnClickListener {
             val intent = Intent(
                 context,
                 CollectionActivity::class.java
             )
             startActivity(intent)
         }
-        binding.btnToFavorite.setOnClickListener {
+        binding.btnFavorite.setOnClickListener {
             val intent = Intent(
                 context,
                 FavoriteActivity::class.java
             )
             startActivity(intent)
+        }
+        binding.btnSetting.setOnClickListener {
+            val intent = Intent(
+                context,
+                SettingActivity::class.java
+            )
+            startActivity(intent)
+        }
+        binding.btnLogout.setOnClickListener {
+           notificationsViewModel.logout()
+           activity?.finish()
         }
         super.onViewCreated(view, savedInstanceState)
     }

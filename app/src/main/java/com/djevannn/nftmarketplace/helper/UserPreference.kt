@@ -1,10 +1,7 @@
 package com.djevannn.nftmarketplace.helper
 
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.*
 import com.djevannn.nftmarketplace.data.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -37,6 +34,18 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    fun getThemeSetting(): Flow<Int> {
+        return dataStore.data.map { preferences ->
+            preferences[THEME_KEY] ?: 0
+        }
+    }
+
+    suspend fun saveThemeSetting(tema: Int) {
+        dataStore.edit { preferences ->
+            preferences[THEME_KEY] = tema
+        }
+    }
+
     suspend fun login() {
         dataStore.edit { preferences ->
             preferences[LOGIN_STATUS] = true
@@ -66,6 +75,8 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val WALLET_KEY = stringPreferencesKey("wallet")
         private val PHOTO_URL = stringPreferencesKey("photo")
         private val CREATED_AT = stringPreferencesKey("created_at")
+        private val THEME_KEY = intPreferencesKey("theme_setting")
+
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {

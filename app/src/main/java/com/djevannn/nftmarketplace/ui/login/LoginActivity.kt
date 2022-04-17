@@ -3,6 +3,7 @@ package com.djevannn.nftmarketplace.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
@@ -63,17 +64,31 @@ class LoginActivity : AppCompatActivity() {
         binding.apply {
             showLoading()
             btnLogin.setOnClickListener {
-                Log.d("TEST", "setAction: test")
-                viewModel.checkUser(etUsername.editText?.text.toString(),
-                    etPassword.editText?.text.toString(),
-                    object : ResponseCallback {
-                        override fun getCallback(
-                            msg: String,
-                            status: Boolean
-                        ) {
-                            showDialogs(msg, status)
-                        }
-                    })
+                var isError = false
+
+                if(TextUtils.isEmpty(etUsername.editText?.text)){
+                    isError = true
+                    etUsername.error = getString(R.string.username_empty)
+                }
+                if(TextUtils.isEmpty(etPassword.editText?.text)){
+                    isError = true
+                    etPassword.error = getString(R.string.password_empty)
+                } else if(etPassword.editText?.text?.length!! < 6){
+                    isError = true
+                    etPassword.error = getString(R.string.password_error_field)
+                }
+                if(!isError){
+                    viewModel.checkUser(etUsername.editText?.text.toString(),
+                        etPassword.editText?.text.toString(),
+                        object : ResponseCallback {
+                            override fun getCallback(
+                                msg: String,
+                                status: Boolean
+                            ) {
+                                showDialogs(msg, status)
+                            }
+                        })
+                }
             }
             tvRegister.setOnClickListener {
                 startActivity(
@@ -104,11 +119,6 @@ class LoginActivity : AppCompatActivity() {
                 val message = getString(R.string.login_success)
                 setMessage(message)
                 setPositiveButton(getString(R.string.next)) { _, _ ->
-//                    val intent =
-//                        Intent(context, LoginActivity::class.java)
-//                    intent.flags =
-//                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//                    startActivity(intent)
                     finish()
                 }
                 create()

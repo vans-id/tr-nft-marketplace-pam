@@ -1,13 +1,19 @@
 package com.djevannn.nftmarketplace.ui.profile
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.djevannn.nftmarketplace.data.User
+import com.djevannn.nftmarketplace.helper.UserPreference
+import kotlinx.coroutines.launch
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(private val pref:UserPreference) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+    fun getUser(): LiveData<User> {
+        return pref.getUser().asLiveData()
     }
-    val text: LiveData<String> = _text
+
+    fun logout() {
+        viewModelScope.launch {
+            pref.logout()
+        }
+    }
 }

@@ -23,7 +23,7 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel(){
         var isFound = false
         _isLoading.value = true
         val db = FirebaseDatabase.getInstance().getReference("users")
-        db.addListenerForSingleValueEvent(object: ValueEventListener{
+        db.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
                     if (data.child("username").value == username && data.child("password").value == password) {
