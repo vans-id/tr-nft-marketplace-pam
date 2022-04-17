@@ -6,17 +6,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.djevannn.nftmarketplace.R
 import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.databinding.FragmentProfileBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
+import com.djevannn.nftmarketplace.setting.SettingActivity
 import com.djevannn.nftmarketplace.ui.collection.CollectionActivity
 import com.djevannn.nftmarketplace.ui.favorite.FavoriteActivity
 
@@ -29,12 +33,13 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var user : User
+    private lateinit var notificationsViewModel : ProfileViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
+        notificationsViewModel =
             ViewModelProvider(
                 this,
                 ViewModelFactory(UserPreference.getInstance(requireContext().dataStore))
@@ -79,6 +84,17 @@ class ProfileFragment : Fragment() {
                 FavoriteActivity::class.java
             )
             startActivity(intent)
+        }
+        binding.btnSetting.setOnClickListener {
+            val intent = Intent(
+                context,
+                SettingActivity::class.java
+            )
+            startActivity(intent)
+        }
+        binding.btnLogout.setOnClickListener {
+           notificationsViewModel.logout()
+           activity?.finish()
         }
         super.onViewCreated(view, savedInstanceState)
     }

@@ -50,4 +50,12 @@
     <string name="username_empty">Username must be filled</string>
     <string name="password_empty">Password must be filled</string>
     <string name="password_error_field">Password must have 6 character</string>
+    <string name="pilih_tema">Choose App Theme</string>
+    <string name="auto">Auto</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="setting_page">Settings Page</string>
+    <string name="logout_dialog">Are you sure want to logout?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>
