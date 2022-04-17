@@ -16,6 +16,9 @@ class RegisterViewModel(private val pref: UserPreference) :
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _isFound = MutableLiveData<Boolean>()
+    val isFound: LiveData<Boolean> = _isFound
+
     fun getUser(): LiveData<User> {
         return pref.getUser().asLiveData()
     }
@@ -27,28 +30,31 @@ class RegisterViewModel(private val pref: UserPreference) :
         callback: ResponseCallback
     ) {
         _isLoading.value = true
-        val dateInString = getCurrentDate()
-        val ref = FirebaseDatabase.getInstance().getReference("users")
-        val userId = ref.push().key
-        val user = UserRegist(
-            name,
-            username,
-            password,
-            "",
-            dateInString,
-            "",
-        )
-        if (userId != null) {
-            ref.child(userId).setValue(user).apply {
-                addOnCompleteListener {
-                    callback.getCallback("success", true)
+//        checkUser(username)
+
+            val dateInString = getCurrentDate()
+            val ref = FirebaseDatabase.getInstance().getReference("users")
+            val userId = ref.push().key
+            val user = UserRegist(
+                name,
+                username,
+                password,
+                "",
+                dateInString,
+                "",
+            )
+            if (userId != null) {
+                ref.child(userId).setValue(user).apply {
+                    addOnCompleteListener {
+                        callback.getCallback("", true)
+                    }
+                    addOnCanceledListener {
+                        callback.getCallback("", false)
+                    }
                 }
-                addOnCanceledListener {
-                    callback.getCallback("error", true)
-                }
+                _isLoading.value = false
             }
             _isLoading.value = false
-        }
-        _isLoading.value = false
+
     }
 }
