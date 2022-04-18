@@ -160,13 +160,15 @@ class DetailViewModel(private val pref: UserPreference) :
 
     fun checkMine(item: NFT) {
         // get user here
+        _isMine.value = false
         db.child("assets")
-            .child(item.token_id.toString()).get()
+            .child(item.token_id.toString()).child("owner").get()
             .addOnSuccessListener {
-                _isMine.value = true
+                _isMine.value = it.value == user.username
             }
-            .addOnSuccessListener {
-                Log.d("DetailViewModel", it.toString())
+
+            .addOnFailureListener{
+                _isMine.value = false
             }
     }
 

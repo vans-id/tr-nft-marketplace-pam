@@ -2,6 +2,7 @@ package com.djevannn.nftmarketplace.ui.detail
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -69,9 +70,9 @@ class DetailActivity : AppCompatActivity() {
             }
 
             viewModel.isMine.observe(this@DetailActivity){
-                binding.btnBuyNow.isEnabled = when(it){
-                    true -> false
-                    else -> true
+                binding.btnBuyNow.visibility = when(it){
+                    true -> View.INVISIBLE
+                    else -> View.VISIBLE
                 }
             }
 
