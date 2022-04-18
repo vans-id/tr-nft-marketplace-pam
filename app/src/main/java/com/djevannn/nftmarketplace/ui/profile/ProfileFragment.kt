@@ -19,6 +19,7 @@ import com.djevannn.nftmarketplace.databinding.FragmentProfileBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
 import com.djevannn.nftmarketplace.setting.SettingActivity
 import com.djevannn.nftmarketplace.ui.collection.CollectionActivity
+import com.djevannn.nftmarketplace.ui.edit_profile.EditProfileActivity
 import com.djevannn.nftmarketplace.ui.favorite.FavoriteActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
@@ -77,6 +78,13 @@ class ProfileFragment : Fragment() {
             val intent = Intent(
                 context,
                 CollectionActivity::class.java
+            )
+            startActivity(intent)
+        }
+        binding.btnProfile.setOnClickListener {
+            val intent = Intent(
+                context,
+                EditProfileActivity::class.java
             )
             startActivity(intent)
         }

@@ -58,4 +58,10 @@
     <string name="logout_dialog">Are you sure want to logout?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="about">About Me</string>
+    <string name="url_photo">Photo Url</string>
+    <string name="wallet_address">Wallet Address</string>
+    <string name="change_detail">Save Changes</string>
+    <string name="edit_profile_success">Edit Profile Success!</string>
+    <string name="edit_profile_error">Edit profile error, %1$s</string>
 </resources>
