@@ -5,9 +5,12 @@ import androidx.lifecycle.*
 import com.djevannn.nftmarketplace.data.Creator
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.data.User
+import com.djevannn.nftmarketplace.data.UserRegist
+import com.djevannn.nftmarketplace.helper.ResponseCallback
 import com.djevannn.nftmarketplace.helper.UserPreference
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -26,6 +29,9 @@ class DetailViewModel(private val pref: UserPreference) :
     private val _isFavorite = MutableLiveData<Boolean>()
     val isFavorite: LiveData<Boolean> = _isFavorite
 
+    private val _isMine = MutableLiveData<Boolean>()
+    val isMine: LiveData<Boolean> = _isMine
+
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> = _message
 
@@ -33,28 +39,96 @@ class DetailViewModel(private val pref: UserPreference) :
     private lateinit var user: User
 
     init {
+        _isMine.value = false
         viewModelScope.launch {
             pref.getUser().collect {
                 user = it
             }
         }
+
     }
 
     fun buyNFT(item: NFT) {
         _isLoading.value = true
-        // get user here
-        item.owner = user.username
+        if (user.balance < item.current_price) {
+            _message.value = "Gagal membeli NFT: Balance not enough"
+            _isLoading.value = false
+        } else {
+            // get user here
+            val previousOwner = item.owner
+            val newOwner = user.username
+            item.owner = newOwner
 
-        val db = Firebase.database.reference
-        db.child("assets").child(item.token_id.toString())
-            .setValue(item).addOnSuccessListener {
-                _message.value = "Berhasil membeli NFT"
-                _isLoading.value = false
-            }.addOnFailureListener {
-                _message.value = "Gagal membeli NFT: ${it.message}"
-                _isLoading.value = false
-            }
+            val db = Firebase.database.reference
+            db.child("assets").child(item.token_id.toString())
+                .setValue(item).addOnSuccessListener {
+                    transferBalance(previousOwner, newOwner, item.current_price)
+                    _message.value = "Berhasil membeli NFT"
+                    _isLoading.value = false
+                }.addOnFailureListener {
+                    _message.value = "Gagal membeli NFT: ${it.message}"
+                    _isLoading.value = false
+                }
+
+
+        }
     }
+
+    private fun transferBalance(previousOwner: String, newOwner: String, currentPrice: Double) {
+        FirebaseDatabase.getInstance().getReference("users")
+            .addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (data in snapshot.children) {
+                        if (data.child("username").value == newOwner) {
+                            val balance = data.child("balance").value.toString().toDouble()
+                            data.ref.child("balance").setValue(balance - currentPrice)
+                            // update user
+                            
+                            val user = User(
+                                about = user.about,
+                                balance = balance - currentPrice,
+                                name = user.name,
+                                username = user.username,
+                                password = user.password,
+                                wallet =  user.wallet,
+                                created_at = user.created_at,
+                                photo_url = user.photo_url,
+                                isLogin = true
+                            )
+                            
+                            saveUser(user)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("Transfer Error 1", error.toString())
+                }
+            })
+
+        FirebaseDatabase.getInstance().getReference("users")
+            .addListenerForSingleValueEvent(object: ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (data in snapshot.children) {
+                        if (data.child("username").value == previousOwner) {
+                            val balance = data.child("balance").value.toString().toDouble()
+                            data.ref.child("balance").setValue(balance + currentPrice)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("Transfer Error 2", error.toString())
+                }
+            })
+    }
+
+    private fun saveUser(user: User) {
+        viewModelScope.launch {
+            pref.saveUser(user)
+        }
+    }
+
 
     fun getCreatorData(creator: String) {
         _isLoading.value = true
@@ -82,6 +156,18 @@ class DetailViewModel(private val pref: UserPreference) :
         db.child("users").orderByChild("username")
             .equalTo(creator)
             .addValueEventListener(nftListener)
+    }
+
+    fun checkMine(item: NFT) {
+        // get user here
+        db.child("assets")
+            .child(item.token_id.toString()).get()
+            .addOnSuccessListener {
+                _isMine.value = true
+            }
+            .addOnSuccessListener {
+                Log.d("DetailViewModel", it.toString())
+            }
     }
 
     fun onFavoriteClicked(item: NFT) {

@@ -47,6 +47,7 @@ class DetailActivity : AppCompatActivity() {
         if (data != null) {
             viewModel.getCreatorData(data.creator)
             viewModel.getFavoriteStatus(data)
+            viewModel.checkMine(data)
 
             Glide.with(this@DetailActivity)
                 .load(data.image_url)
@@ -67,6 +68,13 @@ class DetailActivity : AppCompatActivity() {
                 viewModel.onFavoriteClicked(data)
             }
 
+            viewModel.isMine.observe(this@DetailActivity){
+                binding.btnBuyNow.isEnabled = when(it){
+                    true -> false
+                    else -> true
+                }
+            }
+
             viewModel.creator.observe(this@DetailActivity) {
                 binding.tvDetailAbout.text = it.about
                 binding.tvDetailDescription.text =
@@ -75,12 +83,14 @@ class DetailActivity : AppCompatActivity() {
                     .load(it.photo_url)
                     .into(binding.ivDetailCreatorImage)
             }
+
             viewModel.isLoading.observe(this@DetailActivity) {
                 binding.pbDetail.visibility = when (it) {
                     true -> View.VISIBLE
                     false -> View.GONE
                 }
             }
+
             viewModel.isFavorite.observe(this@DetailActivity) {
                 val image = when (it) {
                     true -> R.drawable.ic_baseline_favorite_24
@@ -88,6 +98,7 @@ class DetailActivity : AppCompatActivity() {
                 }
                 binding.fabDetail.setImageResource(image)
             }
+
             viewModel.message.observe(this@DetailActivity) {
                 Toast.makeText(
                     this@DetailActivity,
