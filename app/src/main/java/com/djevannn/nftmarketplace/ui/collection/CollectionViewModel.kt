@@ -12,7 +12,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class CollectionViewModel(private val pref: UserPreference) : ViewModel() {
+class zCollectionViewModel(private val pref: UserPreference) : ViewModel() {
 
     private val _collectionList = MutableLiveData<List<NFT>>()
     val collectionList: LiveData<List<NFT>> = _collectionList
