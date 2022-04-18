@@ -71,7 +71,7 @@ class DetailActivity : AppCompatActivity() {
             viewModel.isMine.observe(this@DetailActivity) {
                 val visibility = when (it) {
                     true -> View.GONE
-                    else -> View.VISIBLE
+                    false -> View.VISIBLE
                 }
 
                 binding.cvBuyNow.visibility = visibility
