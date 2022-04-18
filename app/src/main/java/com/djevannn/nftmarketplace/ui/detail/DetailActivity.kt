@@ -68,11 +68,14 @@ class DetailActivity : AppCompatActivity() {
                 viewModel.onFavoriteClicked(data)
             }
 
-            viewModel.isMine.observe(this@DetailActivity){
-                binding.btnBuyNow.isEnabled = when(it){
-                    true -> false
-                    else -> true
+            viewModel.isMine.observe(this@DetailActivity) {
+                val visibility = when (it) {
+                    true -> View.GONE
+                    else -> View.VISIBLE
                 }
+
+                binding.cvBuyNow.visibility = visibility
+                binding.btnBuyNow.visibility = visibility
             }
 
             viewModel.creator.observe(this@DetailActivity) {

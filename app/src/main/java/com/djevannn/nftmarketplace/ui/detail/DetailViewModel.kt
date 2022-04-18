@@ -1,12 +1,13 @@
 package com.djevannn.nftmarketplace.ui.detail
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.djevannn.nftmarketplace.data.Creator
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.data.User
-import com.djevannn.nftmarketplace.data.UserRegist
-import com.djevannn.nftmarketplace.helper.ResponseCallback
 import com.djevannn.nftmarketplace.helper.UserPreference
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -39,7 +40,6 @@ class DetailViewModel(private val pref: UserPreference) :
     private lateinit var user: User
 
     init {
-        _isMine.value = false
         viewModelScope.launch {
             pref.getUser().collect {
                 user = it
@@ -62,11 +62,16 @@ class DetailViewModel(private val pref: UserPreference) :
             val db = Firebase.database.reference
             db.child("assets").child(item.token_id.toString())
                 .setValue(item).addOnSuccessListener {
-                    transferBalance(previousOwner, newOwner, item.current_price)
+                    transferBalance(
+                        previousOwner,
+                        newOwner,
+                        item.current_price
+                    )
                     _message.value = "Berhasil membeli NFT"
                     _isLoading.value = false
                 }.addOnFailureListener {
-                    _message.value = "Gagal membeli NFT: ${it.message}"
+                    _message.value =
+                        "Gagal membeli NFT: ${it.message}"
                     _isLoading.value = false
                 }
 
@@ -74,28 +79,36 @@ class DetailViewModel(private val pref: UserPreference) :
         }
     }
 
-    private fun transferBalance(previousOwner: String, newOwner: String, currentPrice: Double) {
+    private fun transferBalance(
+        previousOwner: String,
+        newOwner: String,
+        currentPrice: Double
+    ) {
         FirebaseDatabase.getInstance().getReference("users")
-            .addListenerForSingleValueEvent(object: ValueEventListener {
+            .addListenerForSingleValueEvent(object :
+                ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (data in snapshot.children) {
                         if (data.child("username").value == newOwner) {
-                            val balance = data.child("balance").value.toString().toDouble()
-                            data.ref.child("balance").setValue(balance - currentPrice)
+                            val balance =
+                                data.child("balance").value.toString()
+                                    .toDouble()
+                            data.ref.child("balance")
+                                .setValue(balance - currentPrice)
                             // update user
-                            
+
                             val user = User(
                                 about = user.about,
                                 balance = balance - currentPrice,
                                 name = user.name,
                                 username = user.username,
                                 password = user.password,
-                                wallet =  user.wallet,
+                                wallet = user.wallet,
                                 created_at = user.created_at,
                                 photo_url = user.photo_url,
                                 isLogin = true
                             )
-                            
+
                             saveUser(user)
                         }
                     }
@@ -107,12 +120,16 @@ class DetailViewModel(private val pref: UserPreference) :
             })
 
         FirebaseDatabase.getInstance().getReference("users")
-            .addListenerForSingleValueEvent(object: ValueEventListener {
+            .addListenerForSingleValueEvent(object :
+                ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     for (data in snapshot.children) {
                         if (data.child("username").value == previousOwner) {
-                            val balance = data.child("balance").value.toString().toDouble()
-                            data.ref.child("balance").setValue(balance + currentPrice)
+                            val balance =
+                                data.child("balance").value.toString()
+                                    .toDouble()
+                            data.ref.child("balance")
+                                .setValue(balance + currentPrice)
                         }
                     }
                 }
@@ -128,7 +145,6 @@ class DetailViewModel(private val pref: UserPreference) :
             pref.saveUser(user)
         }
     }
-
 
     fun getCreatorData(creator: String) {
         _isLoading.value = true
@@ -159,15 +175,7 @@ class DetailViewModel(private val pref: UserPreference) :
     }
 
     fun checkMine(item: NFT) {
-        // get user here
-        db.child("assets")
-            .child(item.token_id.toString()).get()
-            .addOnSuccessListener {
-                _isMine.value = true
-            }
-            .addOnSuccessListener {
-                Log.d("DetailViewModel", it.toString())
-            }
+        _isMine.value = item.owner == user.username
     }
 
     fun onFavoriteClicked(item: NFT) {

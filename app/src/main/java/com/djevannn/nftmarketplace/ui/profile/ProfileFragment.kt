@@ -55,10 +55,15 @@ class ProfileFragment : Fragment() {
 
         notificationsViewModel.getUser().observe(viewLifecycleOwner) {
             this.user = it
+
+            val front = it.wallet.take(6)
+            val back = it.wallet.takeLast(4)
+            val truncate = "$front...$back"
+
             binding.apply {
                 tvWallet.text = it.wallet
                 tvName.text = it.name
-                tvWallet.text = it.wallet
+                tvWallet.text = truncate
                 tvEth.text = it.balance.toString() + "ETH"
                 Glide.with(root)
                     .load(it.photo_url)
