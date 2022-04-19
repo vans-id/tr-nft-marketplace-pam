@@ -18,7 +18,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.databinding.ActivityMainBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
-import com.djevannn.nftmarketplace.ui.login.LoginActivity
+import com.djevannn.nftmarketplace.ui.auth.login.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
@@ -37,24 +37,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
+//        setupView()
         setupViewModel()
 
         setupFragment()
 
     }
 
-    private fun setupView() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
-    }
+//    private fun setupView() {
+//        @Suppress("DEPRECATION")
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            window.insetsController?.hide(WindowInsets.Type.statusBars())
+//        } else {
+//            window.setFlags(
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN
+//            )
+//        }
+//    }
 
     private fun setupViewModel() {
         mainViewModel = ViewModelProvider(

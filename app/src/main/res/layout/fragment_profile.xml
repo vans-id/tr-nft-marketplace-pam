@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.profile.ProfileFragment">
+    tools:context=".ui.user.profile.ProfileFragment">
 
     <ImageView
         android:id="@+id/iv_avatar"

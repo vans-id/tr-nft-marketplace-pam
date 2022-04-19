@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">NFT Marketplace</string>
-    <string name="title_home">Sedang Trending</string>
-    <string name="title_add">Buat NFT</string>
-    <string name="title_profile">Profil Saya</string>
+    <string name="title_home">Live Bids</string>
+    <string name="title_add">Create NFT</string>
+    <string name="title_profile">My Profile</string>
     <string name="title_activity_detail">DetailActivity</string>
 
     <!-- Strings used for fragments for navigation -->
@@ -64,4 +64,21 @@
     <string name="change_detail">Save Changes</string>
     <string name="edit_profile_success">Edit Profile Success!</string>
     <string name="edit_profile_error">Edit profile error, %1$s</string>
+
+    <!--    Strings used for Detail Activity-->
+    <string name="owned_by">Owned by</string>
+    <string name="cd_ethereum">ethereum</string>
+    <string name="listings">Listings</string>
+    <string name="icon">icon</string>
+    <string name="description">Description</string>
+    <string name="about_creator">About Creator</string>
+    <string name="creator">creator</string>
+
+    <!--    Strings used for Confirm Dialog-->
+    <string name="buy_now">Buy Now</string>
+    <string name="checkout">Checkout</string>
+    <string name="title">Title</string>
+    <string name="price">Price</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>
