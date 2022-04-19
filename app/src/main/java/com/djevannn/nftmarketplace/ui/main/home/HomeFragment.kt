@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.home
+package com.djevannn.nftmarketplace.ui.main.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,7 @@ import com.djevannn.nftmarketplace.adapters.nft.ListNFTAdapter
 import com.djevannn.nftmarketplace.adapters.nft.OnItemClickCallback
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.FragmentHomeBinding
-import com.djevannn.nftmarketplace.ui.detail.DetailActivity
+import com.djevannn.nftmarketplace.ui.main.detail.DetailActivity
 
 class HomeFragment : Fragment() {
 

@@ -1,11 +1,10 @@
-package com.djevannn.nftmarketplace.ui.edit_profile
+package com.djevannn.nftmarketplace.ui.user.edit_profile
 
 import androidx.lifecycle.*
 import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.data.UserRegist
 import com.djevannn.nftmarketplace.helper.ResponseCallback
 import com.djevannn.nftmarketplace.helper.UserPreference
-import com.djevannn.nftmarketplace.helper.getCurrentDate
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.launch
 

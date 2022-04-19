@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.profile
+package com.djevannn.nftmarketplace.ui.user.profile
 
 import android.content.Context
 import android.content.Intent
@@ -18,9 +18,9 @@ import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.databinding.FragmentProfileBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
 import com.djevannn.nftmarketplace.setting.SettingActivity
-import com.djevannn.nftmarketplace.ui.collection.CollectionActivity
-import com.djevannn.nftmarketplace.ui.edit_profile.EditProfileActivity
-import com.djevannn.nftmarketplace.ui.favorite.FavoriteActivity
+import com.djevannn.nftmarketplace.ui.user.collection.CollectionActivity
+import com.djevannn.nftmarketplace.ui.user.edit_profile.EditProfileActivity
+import com.djevannn.nftmarketplace.ui.user.favorite.FavoriteActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
     name = "settings"

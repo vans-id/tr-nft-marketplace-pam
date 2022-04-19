@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.profile
+package com.djevannn.nftmarketplace.ui.user.profile
 
 import androidx.lifecycle.*
 import com.djevannn.nftmarketplace.data.User

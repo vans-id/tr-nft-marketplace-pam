@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.favorite
+package com.djevannn.nftmarketplace.ui.user.favorite
 
 import android.content.Context
 import android.content.Intent
@@ -16,7 +16,7 @@ import com.djevannn.nftmarketplace.adapters.nft.OnItemClickCallback
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.ActivityFavoriteBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
-import com.djevannn.nftmarketplace.ui.detail.DetailActivity
+import com.djevannn.nftmarketplace.ui.main.detail.DetailActivity
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
     name = "settings"

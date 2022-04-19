@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.djevannn.nftmarketplace.helper.UserPreference
 import com.djevannn.nftmarketplace.setting.SettingViewModel
-import com.djevannn.nftmarketplace.ui.collection.CollectionViewModel
-import com.djevannn.nftmarketplace.ui.detail.DetailViewModel
-import com.djevannn.nftmarketplace.ui.edit_profile.EditProfileViewModel
-import com.djevannn.nftmarketplace.ui.favorite.FavoriteViewModel
-import com.djevannn.nftmarketplace.ui.login.LoginViewModel
-import com.djevannn.nftmarketplace.ui.profile.ProfileViewModel
-import com.djevannn.nftmarketplace.ui.register.RegisterViewModel
+import com.djevannn.nftmarketplace.ui.user.collection.CollectionViewModel
+import com.djevannn.nftmarketplace.ui.main.detail.DetailViewModel
+import com.djevannn.nftmarketplace.ui.user.edit_profile.EditProfileViewModel
+import com.djevannn.nftmarketplace.ui.user.favorite.FavoriteViewModel
+import com.djevannn.nftmarketplace.ui.auth.login.LoginViewModel
+import com.djevannn.nftmarketplace.ui.user.profile.ProfileViewModel
+import com.djevannn.nftmarketplace.ui.auth.register.RegisterViewModel
 
 class ViewModelFactory(private val pref: UserPreference) :
     ViewModelProvider.NewInstanceFactory() {

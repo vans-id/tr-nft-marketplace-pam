@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.register
+package com.djevannn.nftmarketplace.ui.auth.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

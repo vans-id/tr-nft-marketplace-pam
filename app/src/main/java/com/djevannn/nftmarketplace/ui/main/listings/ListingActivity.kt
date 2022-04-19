@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.listings
+package com.djevannn.nftmarketplace.ui.main.listings
 
 import android.os.Bundle
 import android.view.View

@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.edit_profile
+package com.djevannn.nftmarketplace.ui.user.edit_profile
 
 import android.content.Context
 import android.content.Intent

@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.favorite
+package com.djevannn.nftmarketplace.ui.user.collection
 
 import androidx.lifecycle.*
 import com.djevannn.nftmarketplace.data.NFT
@@ -12,10 +12,10 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class FavoriteViewModel(private val pref: UserPreference) : ViewModel() {
+class CollectionViewModel(private val pref: UserPreference) : ViewModel() {
 
-    private val _favoriteList = MutableLiveData<List<NFT>>()
-    val favoriteList: LiveData<List<NFT>> = _favoriteList
+    private val _collectionList = MutableLiveData<List<NFT>>()
+    val collectionList: LiveData<List<NFT>> = _collectionList
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -26,13 +26,12 @@ class FavoriteViewModel(private val pref: UserPreference) : ViewModel() {
         viewModelScope.launch {
             pref.getUser().collect {
                 user = it
-                fetchAllFavorites()
+                fetchAllCollection()
             }
         }
-
     }
 
-    private fun fetchAllFavorites() {
+    private fun fetchAllCollection() {
         _isLoading.value = true
 
         val db = Firebase.database.reference
@@ -45,7 +44,7 @@ class FavoriteViewModel(private val pref: UserPreference) : ViewModel() {
                     if (product != null) res.add(product)
                 }
 
-                _favoriteList.value = res
+                _collectionList.value = res
                 _isLoading.value = false
             }
 
@@ -54,7 +53,8 @@ class FavoriteViewModel(private val pref: UserPreference) : ViewModel() {
             }
         }
         // dapatkan username yang login disini
-        db.child("favorites").child(user.username)
+        db.child("assets").orderByChild("owner")
+            .equalTo(user.username)
             .addValueEventListener(nftListener)
     }
 

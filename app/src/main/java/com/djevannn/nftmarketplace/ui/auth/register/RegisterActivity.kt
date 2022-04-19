@@ -1,11 +1,10 @@
-package com.djevannn.nftmarketplace.ui.login
+package com.djevannn.nftmarketplace.ui.auth.register
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
@@ -15,40 +14,43 @@ import androidx.lifecycle.ViewModelProvider
 import com.djevannn.nftmarketplace.MainActivity
 import com.djevannn.nftmarketplace.R
 import com.djevannn.nftmarketplace.ViewModelFactory
-import com.djevannn.nftmarketplace.databinding.ActivityLoginBinding
+import com.djevannn.nftmarketplace.databinding.ActivityRegisterBinding
 import com.djevannn.nftmarketplace.helper.ResponseCallback
 import com.djevannn.nftmarketplace.helper.UserPreference
-import com.djevannn.nftmarketplace.ui.register.RegisterActivity
+import com.djevannn.nftmarketplace.ui.auth.login.LoginActivity
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
     name = "settings"
 )
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
-
+class RegisterActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityRegisterBinding
+    private lateinit var viewModel: RegisterViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setView()
-        setViewModel()
-        setAction()
+        setupView()
+        setupViewModel()
+        setupAction()
     }
 
-    private fun setViewModel() {
+    private fun setupViewModel() {
         viewModel = ViewModelProvider(
             this,
             ViewModelFactory(UserPreference.getInstance(dataStore))
-        )[LoginViewModel::class.java]
+        )[RegisterViewModel::class.java]
 
         viewModel.getUser().observe(this) { user ->
             if (user.isLogin) {
                 startActivity(
                     Intent(
-                        this@LoginActivity,
+                        this@RegisterActivity,
                         MainActivity::class.java
                     )
                 )
@@ -56,15 +58,27 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun setView() {
+    private fun setupView() {
         supportActionBar?.hide()
     }
 
-    private fun setAction() {
+    private fun setupAction() {
         binding.apply {
-            showLoading()
-            btnLogin.setOnClickListener {
+            tvLogin.setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@RegisterActivity,
+                        LoginActivity::class.java
+                    )
+                )
+            }
+
+            btnRegister.setOnClickListener {
                 var isError = false
+                if(TextUtils.isEmpty(etName.editText?.text)){
+                    isError = true
+                    etName.error = getString(R.string.name_error_field)
+                }
 
                 if(TextUtils.isEmpty(etUsername.editText?.text)){
                     isError = true
@@ -77,9 +91,29 @@ class LoginActivity : AppCompatActivity() {
                     isError = true
                     etPassword.error = getString(R.string.password_error_field)
                 }
+
                 if(!isError){
-                    viewModel.checkUser(etUsername.editText?.text.toString(),
-                        etPassword.editText?.text.toString(),
+                    cekUser()
+                }
+            }
+        }
+    }
+
+    private fun cekUser(): Boolean {
+        var isFounds = false
+        val db = FirebaseDatabase.getInstance().getReference("users")
+        db.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (data in snapshot.children) {
+                    if (data.child("username").value == binding.etUsername.editText?.text.toString()) {
+                        isFounds = true
+                    }
+                }
+                if(!isFounds){
+                    viewModel.saveUser(
+                        binding.etName.editText?.text.toString(),
+                        binding.etUsername.editText?.text.toString(),
+                        binding.etPassword.editText?.text.toString(),
                         object : ResponseCallback {
                             override fun getCallback(
                                 msg: String,
@@ -88,37 +122,30 @@ class LoginActivity : AppCompatActivity() {
                                 showDialogs(msg, status)
                             }
                         })
+                }else {
+                    showDialogs("User sudah ada!", false)
                 }
             }
-            tvRegister.setOnClickListener {
-                startActivity(
-                    Intent(
-                        this@LoginActivity,
-                        RegisterActivity::class.java
-                    )
-                )
-            }
-        }
-    }
 
-    private fun showLoading() {
-        viewModel.isLoading.observe(this) {
-            binding.apply {
-                when {
-                    it -> progressBar.visibility = View.VISIBLE
-                    else -> progressBar.visibility = View.INVISIBLE
-                }
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("Get Data bawah", error.toString())
             }
-        }
+        })
+        return isFounds
     }
 
     private fun showDialogs(msg: String, status: Boolean) {
         if (status) {
             AlertDialog.Builder(this).apply {
                 setTitle("Yay !")
-                val message = getString(R.string.login_success)
+                val message = getString(R.string.register_success)
                 setMessage(message)
                 setPositiveButton(getString(R.string.next)) { _, _ ->
+                    val intent =
+                        Intent(context, LoginActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
                     finish()
                 }
                 create()
@@ -127,7 +154,7 @@ class LoginActivity : AppCompatActivity() {
         } else {
             AlertDialog.Builder(this).apply {
                 setTitle("Oops")
-                val message = getString(R.string.login_error)
+                val message = getString(R.string.register_error, msg)
                 setMessage(message)
                 setNegativeButton(getString(R.string.repeat)) { dialog, _ ->
                     dialog.dismiss()
@@ -137,5 +164,4 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
 }

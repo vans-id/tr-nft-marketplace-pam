@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.detail
+package com.djevannn.nftmarketplace.ui.main.detail
 
 import android.content.Context
 import android.content.Intent
@@ -19,7 +19,7 @@ import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.ActivityDetailBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
-import com.djevannn.nftmarketplace.ui.listings.ListingActivity
+import com.djevannn.nftmarketplace.ui.main.listings.ListingActivity
 
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(

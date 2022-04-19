@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.login
+package com.djevannn.nftmarketplace.ui.auth.login
 
 import android.util.Log
 import androidx.lifecycle.*

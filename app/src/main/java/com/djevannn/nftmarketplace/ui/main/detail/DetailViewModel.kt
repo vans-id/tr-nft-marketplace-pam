@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.ui.detail
+package com.djevannn.nftmarketplace.ui.main.detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -6,9 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.djevannn.nftmarketplace.data.Creator
+import com.djevannn.nftmarketplace.data.Listing
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.helper.UserPreference
+import com.djevannn.nftmarketplace.helper.getCurrentDate
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -50,6 +52,7 @@ class DetailViewModel(private val pref: UserPreference) :
 
     fun buyNFT(item: NFT) {
         _isLoading.value = true
+
         if (user.balance < item.current_price) {
             _message.value = "Gagal membeli NFT: Balance not enough"
             _isLoading.value = false
@@ -59,7 +62,6 @@ class DetailViewModel(private val pref: UserPreference) :
             val newOwner = user.username
             item.owner = newOwner
 
-            val db = Firebase.database.reference
             db.child("assets").child(item.token_id.toString())
                 .setValue(item).addOnSuccessListener {
                     transferBalance(
@@ -67,6 +69,7 @@ class DetailViewModel(private val pref: UserPreference) :
                         newOwner,
                         item.current_price
                     )
+                    setHistory(previousOwner, newOwner, item)
                     _message.value = "Berhasil membeli NFT"
                     _isLoading.value = false
                 }.addOnFailureListener {
@@ -74,8 +77,24 @@ class DetailViewModel(private val pref: UserPreference) :
                         "Gagal membeli NFT: ${it.message}"
                     _isLoading.value = false
                 }
+        }
+    }
 
-
+    private fun setHistory(
+        previousOwner: String,
+        newOwner: String,
+        item: NFT
+    ) {
+        val txId = db.child("history").push().key
+        if (txId != null) {
+            val listingItem = Listing(
+                newOwner,
+                item.token_id,
+                previousOwner,
+                item.current_price,
+                getCurrentDate()
+            )
+            db.child("history").child(txId).setValue(listingItem)
         }
     }
 
@@ -108,7 +127,6 @@ class DetailViewModel(private val pref: UserPreference) :
                                 photo_url = user.photo_url,
                                 isLogin = true
                             )
-
                             saveUser(user)
                         }
                     }
@@ -156,7 +174,6 @@ class DetailViewModel(private val pref: UserPreference) :
                 for (snapshot in dataSnapshot.children) {
                     val product =
                         snapshot.getValue(Creator::class.java)
-                    Log.d("ViewModelDetail", product.toString())
                     if (product != null) res = product
                 }
 

@@ -18,7 +18,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.databinding.ActivityMainBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
-import com.djevannn.nftmarketplace.ui.login.LoginActivity
+import com.djevannn.nftmarketplace.ui.auth.login.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
