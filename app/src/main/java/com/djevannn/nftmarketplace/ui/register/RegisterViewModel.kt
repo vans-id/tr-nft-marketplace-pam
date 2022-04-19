@@ -16,9 +16,6 @@ class RegisterViewModel(private val pref: UserPreference) :
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isFound = MutableLiveData<Boolean>()
-    val isFound: LiveData<Boolean> = _isFound
-
     fun getUser(): LiveData<User> {
         return pref.getUser().asLiveData()
     }
@@ -30,7 +27,6 @@ class RegisterViewModel(private val pref: UserPreference) :
         callback: ResponseCallback
     ) {
         _isLoading.value = true
-//        checkUser(username)
 
         val dateInString = getCurrentDate()
         val ref = FirebaseDatabase.getInstance().getReference("users")

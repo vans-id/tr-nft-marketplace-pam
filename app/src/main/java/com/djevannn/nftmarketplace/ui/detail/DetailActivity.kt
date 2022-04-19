@@ -1,6 +1,7 @@
 package com.djevannn.nftmarketplace.ui.detail
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -18,6 +19,7 @@ import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.ActivityDetailBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
+import com.djevannn.nftmarketplace.ui.listings.ListingActivity
 
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
@@ -31,7 +33,6 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -66,6 +67,15 @@ class DetailActivity : AppCompatActivity() {
             }
             binding.fabDetail.setOnClickListener {
                 viewModel.onFavoriteClicked(data)
+            }
+            binding.materialCardView.setOnClickListener {
+                val intent =
+                    Intent(
+                        this@DetailActivity,
+                        ListingActivity::class.java
+                    )
+                intent.putExtra("TOKEN_ID", data.token_id)
+                startActivity(intent)
             }
 
             viewModel.isMine.observe(this@DetailActivity) {
@@ -130,6 +140,7 @@ class DetailActivity : AppCompatActivity() {
         btnConfirm.setOnClickListener {
             viewModel.buyNFT(data)
             builder.dismiss()
+            finish()
         }
         btnCancel.setOnClickListener {
             builder.dismiss()

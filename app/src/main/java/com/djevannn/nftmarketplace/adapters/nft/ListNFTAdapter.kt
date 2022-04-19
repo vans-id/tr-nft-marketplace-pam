@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.adapters
+package com.djevannn.nftmarketplace.adapters.nft
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import com.djevannn.nftmarketplace.R
 import com.djevannn.nftmarketplace.data.NFT
 
 class ListNFTAdapter :
-    RecyclerView.Adapter<ListViewHolder>() {
+    RecyclerView.Adapter<ListNFTViewHolder>() {
 
     private var listNft = ArrayList<NFT>()
 
@@ -29,14 +29,14 @@ class ListNFTAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ListViewHolder {
+    ): ListNFTViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_row_nft, parent, false)
-        return ListViewHolder(view)
+        return ListNFTViewHolder(view)
     }
 
     override fun onBindViewHolder(
-        holder: ListViewHolder,
+        holder: ListNFTViewHolder,
         position: Int
     ) {
         val (

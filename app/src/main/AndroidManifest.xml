@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NFTMarketplace">
         <activity
+            android:name=".ui.listings.ListingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.edit_profile.EditProfileActivity"
             android:exported="false" />
         <activity

@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.adapters
+package com.djevannn.nftmarketplace.adapters.nft
 
 import android.view.View
 import android.widget.ImageView
@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.djevannn.nftmarketplace.R
 
-class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(
+class ListNFTViewHolder(itemView: View) : RecyclerView.ViewHolder(
     itemView
 ) {
     var ivNft: ImageView = itemView.findViewById(R.id.iv_nft)

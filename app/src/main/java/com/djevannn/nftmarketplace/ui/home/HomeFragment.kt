@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.djevannn.nftmarketplace.adapters.ListNFTAdapter
-import com.djevannn.nftmarketplace.adapters.OnItemClickCallback
+import com.djevannn.nftmarketplace.adapters.nft.ListNFTAdapter
+import com.djevannn.nftmarketplace.adapters.nft.OnItemClickCallback
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.FragmentHomeBinding
 import com.djevannn.nftmarketplace.ui.detail.DetailActivity

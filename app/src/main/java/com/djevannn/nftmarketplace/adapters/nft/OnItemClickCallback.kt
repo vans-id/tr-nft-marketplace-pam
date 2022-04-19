@@ -1,4 +1,4 @@
-package com.djevannn.nftmarketplace.adapters
+package com.djevannn.nftmarketplace.adapters.nft
 
 import com.djevannn.nftmarketplace.data.NFT
 

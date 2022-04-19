@@ -11,8 +11,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.djevannn.nftmarketplace.ViewModelFactory
-import com.djevannn.nftmarketplace.adapters.ListNFTAdapter
-import com.djevannn.nftmarketplace.adapters.OnItemClickCallback
+import com.djevannn.nftmarketplace.adapters.nft.ListNFTAdapter
+import com.djevannn.nftmarketplace.adapters.nft.OnItemClickCallback
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.ActivityCollectionBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
@@ -33,7 +33,7 @@ class CollectionActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Koleksi"
+        supportActionBar?.title = "Collection"
 
         viewModel = ViewModelProvider(
             this,
