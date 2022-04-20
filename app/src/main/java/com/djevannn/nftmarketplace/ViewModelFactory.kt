@@ -11,7 +11,7 @@ import com.djevannn.nftmarketplace.ui.user.favorite.FavoriteViewModel
 import com.djevannn.nftmarketplace.ui.auth.login.LoginViewModel
 import com.djevannn.nftmarketplace.ui.user.profile.ProfileViewModel
 import com.djevannn.nftmarketplace.ui.auth.register.RegisterViewModel
-import com.djevannn.nftmarketplace.ui.user.user_nft.NFTUserViewModel
+import com.djevannn.nftmarketplace.ui.main.user_nft.NFTUserViewModel
 
 class ViewModelFactory(private val pref: UserPreference) :
     ViewModelProvider.NewInstanceFactory() {

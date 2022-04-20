@@ -1,14 +1,14 @@
-package com.djevannn.nftmarketplace.ui.user.user_nft
+package com.djevannn.nftmarketplace.ui.main.user_nft
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.djevannn.nftmarketplace.ViewModelFactory
@@ -30,15 +30,15 @@ class NFTUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNftuserBinding
     private lateinit var viewModel: NFTUserViewModel
     private lateinit var user: User
-    private lateinit var username : String
-    private lateinit var data : UserRegist
+    private lateinit var username: String
+    private lateinit var data: UserRegist
     val listNFTAdapter = ListNFTAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNftuserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        data = UserRegist("",0.0,"","","","","","")
+        data = UserRegist("", 0.0, "", "", "", "", "", "")
         username = intent.getStringExtra("username").toString()
 
         setupView()
@@ -61,8 +61,6 @@ class NFTUserActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-
-
         viewModel = ViewModelProvider(
             this,
             ViewModelFactory(UserPreference.getInstance(dataStore))
@@ -71,12 +69,17 @@ class NFTUserActivity : AppCompatActivity() {
         viewModel.fetchAllCollection(username)
         viewModel.getUser().observe(this) {
             this.user = it
-            if(!it.isLogin){
-                startActivity(Intent(this@NFTUserActivity, LoginActivity::class.java))
+            if (!it.isLogin) {
+                startActivity(
+                    Intent(
+                        this@NFTUserActivity,
+                        LoginActivity::class.java
+                    )
+                )
             }
         }
 
-        viewModel.userNFT.observe(this){
+        viewModel.userNFT.observe(this) {
             data = it
             val front = it.wallet.take(6)
             val back = it.wallet.takeLast(4)
@@ -97,9 +100,10 @@ class NFTUserActivity : AppCompatActivity() {
 
         with(binding.rvCollection) {
             layoutManager =
-                GridLayoutManager(context, 2)
+                LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = listNFTAdapter
+            isNestedScrollingEnabled = false
         }
 
         viewModel.collectionList.observe(this) {
@@ -110,12 +114,12 @@ class NFTUserActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        title = "${data.username} Profile"
+        title = "Owner"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onNavigateUp()
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 }

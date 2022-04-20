@@ -19,8 +19,9 @@ import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.ActivityDetailBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
+import com.djevannn.nftmarketplace.helper.formatNumber
 import com.djevannn.nftmarketplace.ui.main.listings.ListingActivity
-import com.djevannn.nftmarketplace.ui.user.user_nft.NFTUserActivity
+import com.djevannn.nftmarketplace.ui.main.user_nft.NFTUserActivity
 
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
@@ -143,7 +144,7 @@ class DetailActivity : AppCompatActivity() {
         builder.setView(view)
 
         tvTitle.text = data.title + data.token_id
-        tvPrice.text = "${data.current_price} ETH"
+        tvPrice.text = "${formatNumber(data.current_price)} ETH"
         btnConfirm.setOnClickListener {
             viewModel.buyNFT(data)
             builder.dismiss()

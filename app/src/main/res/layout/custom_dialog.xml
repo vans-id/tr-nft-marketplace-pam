@@ -60,7 +60,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:contentDescription="@string/cd_ethereum"
-        android:src="@drawable/ethereum"
+        android:src="@drawable/ic_ethereum_foreground"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/tv_confirm_title"
         app:layout_constraintTop_toTopOf="@+id/textView" />

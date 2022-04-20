@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NFTMarketplace">
         <activity
-            android:name=".ui.user.user_nft.NFTUserActivity"
+            android:name="com.djevannn.nftmarketplace.ui.main.user_nft.NFTUserActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.listings.ListingActivity"

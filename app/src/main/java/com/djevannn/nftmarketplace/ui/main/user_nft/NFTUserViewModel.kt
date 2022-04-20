@@ -1,11 +1,10 @@
-package com.djevannn.nftmarketplace.ui.user.user_nft
+package com.djevannn.nftmarketplace.ui.main.user_nft
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.djevannn.nftmarketplace.data.Creator
 import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.data.UserRegist

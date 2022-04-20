@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.djevannn.nftmarketplace.adapters.nft.ListNFTAdapter
 import com.djevannn.nftmarketplace.adapters.nft.OnItemClickCallback
 import com.djevannn.nftmarketplace.data.NFT
@@ -39,8 +39,7 @@ class HomeFragment : Fragment() {
     ) {
         val listNFTAdapter = ListNFTAdapter()
         with(binding.rvNfts) {
-            layoutManager =
-                GridLayoutManager(context, 2)
+            layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = listNFTAdapter
         }

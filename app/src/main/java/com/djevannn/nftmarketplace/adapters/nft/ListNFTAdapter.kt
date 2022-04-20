@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.djevannn.nftmarketplace.R
 import com.djevannn.nftmarketplace.data.NFT
+import com.djevannn.nftmarketplace.helper.formatNumber
 
 class ListNFTAdapter :
     RecyclerView.Adapter<ListNFTViewHolder>() {
@@ -44,7 +45,7 @@ class ListNFTAdapter :
             _,
             image_url,
             current_price,
-            _,
+            creator,
             token_id
         ) = listNft[position]
 
@@ -52,7 +53,10 @@ class ListNFTAdapter :
             .load(image_url)
             .into(holder.ivNft)
         holder.tvTitle.text = "$title$token_id"
-        holder.tvPrice.text = "$current_price ETH"
+        holder.tvPrice.text = "${formatNumber(current_price)} ETH"
+        holder.tvPriceUSD.text =
+            "($${formatNumber(current_price * 3083.91)})"
+        holder.tvCreator.text = creator
 
         holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClicked(

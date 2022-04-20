@@ -10,6 +10,8 @@ import android.net.Uri
 import android.os.Environment
 import com.djevannn.nftmarketplace.R
 import java.io.*
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,10 +19,10 @@ class Utils {
 }
 
 interface ResponseCallback {
-    fun getCallback(msg:String,status: Boolean)
+    fun getCallback(msg: String, status: Boolean)
 }
 
-fun getCurrentDate():String{
+fun getCurrentDate(): String {
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
     return simpleDateFormat.format(Date())
 }
@@ -38,23 +40,35 @@ fun reduceFileImage(file: File): File {
     var streamLength: Int
     do {
         val bmpStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
+        bitmap.compress(
+            Bitmap.CompressFormat.JPEG,
+            compressQuality,
+            bmpStream
+        )
         val bmpPicByteArray = bmpStream.toByteArray()
         streamLength = bmpPicByteArray.size
         compressQuality -= 5
     } while (streamLength > 1000000)
-    bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
+    bitmap.compress(
+        Bitmap.CompressFormat.JPEG,
+        compressQuality,
+        FileOutputStream(file)
+    )
     return file
 }
 
 fun createTempFile(context: Context): File {
-    val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+    val storageDir: File? =
+        context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
     return File.createTempFile(timeStamp, ".jpg", storageDir)
 }
 
 fun createFile(application: Application): File {
     val mediaDir = application.externalMediaDirs.firstOrNull()?.let {
-        File(it, application.resources.getString(R.string.app_name)).apply { mkdirs() }
+        File(
+            it,
+            application.resources.getString(R.string.app_name)
+        ).apply { mkdirs() }
     }
 
     val outputDirectory = if (
@@ -64,7 +78,10 @@ fun createFile(application: Application): File {
     return File(outputDirectory, "$timeStamp.jpg")
 }
 
-fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = true): Bitmap {
+fun rotateBitmap(
+    bitmap: Bitmap,
+    isBackCamera: Boolean = true
+): Bitmap {
     val matrix = Matrix()
     return if (isBackCamera) {
         matrix.postRotate(90f)
@@ -79,7 +96,12 @@ fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = true): Bitmap {
         )
     } else {
         matrix.postRotate(-90f)
-        matrix.postScale(-1f, 1f, bitmap.width / 2f, bitmap.height / 2f)
+        matrix.postScale(
+            -1f,
+            1f,
+            bitmap.width / 2f,
+            bitmap.height / 2f
+        )
         Bitmap.createBitmap(
             bitmap,
             0,
@@ -96,13 +118,21 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
     val contentResolver: ContentResolver = context.contentResolver
     val myFile = createTempFile(context)
 
-    val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
+    val inputStream =
+        contentResolver.openInputStream(selectedImg) as InputStream
     val outputStream: OutputStream = FileOutputStream(myFile)
     val buf = ByteArray(1024)
     var len: Int
-    while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
+    while (inputStream.read(buf)
+            .also { len = it } > 0
+    ) outputStream.write(buf, 0, len)
     outputStream.close()
     inputStream.close()
 
     return myFile
+}
+
+fun formatNumber(myNumber: Double): String {
+    val formatter: NumberFormat = DecimalFormat("#,###.00")
+    return formatter.format(myNumber)
 }

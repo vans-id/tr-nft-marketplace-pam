@@ -12,4 +12,6 @@ class ListNFTViewHolder(itemView: View) : RecyclerView.ViewHolder(
     var ivNft: ImageView = itemView.findViewById(R.id.iv_nft)
     var tvTitle: TextView = itemView.findViewById(R.id.tv_title)
     var tvPrice: TextView = itemView.findViewById(R.id.tv_price)
+    var tvCreator: TextView = itemView.findViewById(R.id.tv_creator)
+    var tvPriceUSD: TextView = itemView.findViewById(R.id.tv_price_usd)
 }
