@@ -60,37 +60,14 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_detail_image"
             tools:text="Azumi #1234" />
 
-        <TextView
-            android:id="@+id/tv_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/dark_500"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageFilterView"
-            android:text="@string/owned_by" />
-
-        <TextView
-            android:id="@+id/tv_detail_owner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/dark_500"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/tv_"
-            app:layout_constraintTop_toBottomOf="@+id/imageFilterView"
-            tools:text="JangkrikBelang" />
-
         <ImageView
             android:id="@+id/imageFilterView"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/ic_ethereum_foreground"
             android:contentDescription="@string/cd_ethereum"
+            android:src="@drawable/ic_ethereum_foreground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_title" />
 
@@ -107,36 +84,37 @@
             tools:text="100 ETH" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
+            android:id="@+id/cv_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
-            app:cardCornerRadius="4dp"
+            app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
-            app:strokeColor="@color/border_gray"
-            app:strokeWidth="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_">
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_owner"
+            app:strokeColor="@color/border_gray"
+            app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/imageView5"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     android:contentDescription="@string/icon"
-                    android:src="@drawable/ic_baseline_label_24"
+                    android:src="@drawable/ic_baseline_format_list_bulleted_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/dark_500" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -145,21 +123,34 @@
                     android:text="@string/listings"
                     android:textColor="@color/dark_500"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    app:layout_constraintTop_toTopOf="@+id/imageView3" />
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                    app:layout_constraintStart_toEndOf="@+id/imageView5"
+                    app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/icon"
-                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:src="@drawable/ic_baseline_open_in_new_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/dark_500" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/owned_by"
+            android:textSize="16sp"
+            android:textColor="@color/dark_500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageFilterView" />
 
         <TextView
             android:id="@+id/textView3"
@@ -172,7 +163,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_history" />
 
         <TextView
             android:id="@+id/tv_detail_description"
@@ -249,6 +240,20 @@
                     android:text="@string/buy_now" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_detail_owner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/listings"
+            android:textColor="@color/purple_500"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/imageFilterView"
+            tools:text="JangkrikBelang" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -56,7 +56,6 @@ class NFTUserViewModel(private val pref: UserPreference): ViewModel() {
     }
 
     fun fetchAllCollection(username: String) {
-
         val db = Firebase.database.reference
         val nftListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {

@@ -9,7 +9,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.adapters.nft.ListNFTAdapter
 import com.djevannn.nftmarketplace.adapters.nft.OnItemClickCallback
@@ -43,7 +43,7 @@ class CollectionActivity : AppCompatActivity() {
         val listNFTAdapter = ListNFTAdapter()
         with(binding.rvCollection) {
             layoutManager =
-                GridLayoutManager(context, 2)
+                LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = listNFTAdapter
         }

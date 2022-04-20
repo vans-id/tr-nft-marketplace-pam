@@ -68,7 +68,7 @@
     <!--    Strings used for Detail Activity-->
     <string name="owned_by">Owned by</string>
     <string name="cd_ethereum">ethereum</string>
-    <string name="listings">Listings</string>
+    <string name="listings">History</string>
     <string name="icon">icon</string>
     <string name="description">Description</string>
     <string name="about_creator">About Creator</string>

@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.adapters.nft.ListNFTAdapter
 import com.djevannn.nftmarketplace.adapters.nft.OnItemClickCallback
@@ -33,7 +34,7 @@ class FavoriteActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Favorit"
+        supportActionBar?.title = "Favorite"
 
         viewModel = ViewModelProvider(
             this,
@@ -43,7 +44,7 @@ class FavoriteActivity : AppCompatActivity() {
         val listNFTAdapter = ListNFTAdapter()
         with(binding.rvFavorite) {
             layoutManager =
-                GridLayoutManager(context, 2)
+                LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = listNFTAdapter
         }

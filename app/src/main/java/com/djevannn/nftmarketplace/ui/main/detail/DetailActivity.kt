@@ -61,7 +61,7 @@ class DetailActivity : AppCompatActivity() {
             supportActionBar?.title = nftTitle
 
             binding.tvDetailTitle.text = nftTitle
-            binding.tvDetailPrice.text = "${data.current_price} ETH"
+            binding.tvDetailPrice.text = "${formatNumber(data.current_price)} ETH"
             binding.tvDetailOwner.text = data.owner
 
             binding.tvDetailOwner.setOnClickListener {
@@ -76,7 +76,7 @@ class DetailActivity : AppCompatActivity() {
             binding.fabDetail.setOnClickListener {
                 viewModel.onFavoriteClicked(data)
             }
-            binding.materialCardView.setOnClickListener {
+            binding.cvHistory.setOnClickListener {
                 val intent =
                     Intent(
                         this@DetailActivity,
@@ -95,7 +95,6 @@ class DetailActivity : AppCompatActivity() {
                 binding.cvBuyNow.visibility = visibility
                 binding.btnBuyNow.visibility = visibility
             }
-
             viewModel.creator.observe(this@DetailActivity) {
                 binding.tvDetailAbout.text = it.about
                 binding.tvDetailDescription.text =
@@ -104,7 +103,6 @@ class DetailActivity : AppCompatActivity() {
                     .load(it.photo_url)
                     .into(binding.ivDetailCreatorImage)
             }
-
             viewModel.isLoading.observe(this@DetailActivity) {
                 binding.pbDetail.visibility = when (it) {
                     true -> View.VISIBLE
