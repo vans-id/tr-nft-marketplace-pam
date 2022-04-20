@@ -20,6 +20,7 @@ import com.djevannn.nftmarketplace.data.NFT
 import com.djevannn.nftmarketplace.databinding.ActivityDetailBinding
 import com.djevannn.nftmarketplace.helper.UserPreference
 import com.djevannn.nftmarketplace.ui.main.listings.ListingActivity
+import com.djevannn.nftmarketplace.ui.user.user_nft.NFTUserActivity
 
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
@@ -62,6 +63,12 @@ class DetailActivity : AppCompatActivity() {
             binding.tvDetailPrice.text = "${data.current_price} ETH"
             binding.tvDetailOwner.text = data.owner
 
+            binding.tvDetailOwner.setOnClickListener {
+                val intent = Intent(this@DetailActivity,NFTUserActivity::class.java)
+                intent.putExtra("username", data.owner)
+                startActivity(intent)
+            }
+
             binding.btnBuyNow.setOnClickListener {
                 showConfirmDialog(data)
             }
@@ -81,7 +88,7 @@ class DetailActivity : AppCompatActivity() {
             viewModel.isMine.observe(this@DetailActivity) {
                 val visibility = when (it) {
                     true -> View.GONE
-                    else -> View.VISIBLE
+                    false -> View.VISIBLE
                 }
 
                 binding.cvBuyNow.visibility = visibility

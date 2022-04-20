@@ -11,6 +11,7 @@ import com.djevannn.nftmarketplace.ui.user.favorite.FavoriteViewModel
 import com.djevannn.nftmarketplace.ui.auth.login.LoginViewModel
 import com.djevannn.nftmarketplace.ui.user.profile.ProfileViewModel
 import com.djevannn.nftmarketplace.ui.auth.register.RegisterViewModel
+import com.djevannn.nftmarketplace.ui.user.user_nft.NFTUserViewModel
 
 class ViewModelFactory(private val pref: UserPreference) :
     ViewModelProvider.NewInstanceFactory() {
@@ -20,6 +21,9 @@ class ViewModelFactory(private val pref: UserPreference) :
         return when {
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(NFTUserViewModel::class.java) -> {
+                NFTUserViewModel(pref) as T
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel(pref) as T

@@ -119,7 +119,12 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
 
+    override fun onNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onNavigateUp()
     }
 
     private fun showDialogs(msg: String, status: Boolean) {
