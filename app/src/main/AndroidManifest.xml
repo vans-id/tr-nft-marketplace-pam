@@ -16,36 +16,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NFTMarketplace">
         <activity
-            android:name="com.djevannn.nftmarketplace.ui.main.listings.ListingActivity"
+            android:name=".ui.user.user_nft.NFTUserActivity"
             android:exported="false" />
         <activity
-            android:name="com.djevannn.nftmarketplace.ui.user.edit_profile.EditProfileActivity"
+            android:name=".ui.main.listings.ListingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.user.edit_profile.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".setting.SettingActivity"
             android:exported="false" />
         <activity
-            android:name="com.djevannn.nftmarketplace.ui.auth.login.LoginActivity"
+            android:name=".ui.auth.login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name="com.djevannn.nftmarketplace.ui.auth.register.RegisterActivity"
+            android:name=".ui.auth.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name="com.djevannn.nftmarketplace.ui.user.collection.CollectionActivity"
+            android:name=".ui.user.collection.CollectionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name="com.djevannn.nftmarketplace.ui.user.favorite.FavoriteActivity"
+            android:name=".ui.user.favorite.FavoriteActivity"
             android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name="com.djevannn.nftmarketplace.ui.main.detail.DetailActivity"
+            android:name=".ui.main.detail.DetailActivity"
             android:exported="false"
             android:label="@string/title_activity_detail" /> <!-- > -->
         <!-- <meta-data -->
