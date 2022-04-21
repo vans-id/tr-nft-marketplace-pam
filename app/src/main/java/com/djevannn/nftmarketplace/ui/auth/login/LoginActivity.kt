@@ -1,5 +1,7 @@
 package com.djevannn.nftmarketplace.ui.auth.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -35,6 +37,25 @@ class LoginActivity : AppCompatActivity() {
         setView()
         setViewModel()
         setAction()
+        playAnimation()
+    }
+
+    private fun playAnimation() {
+        val titleTextView = ObjectAnimator.ofFloat(binding.tvTitle, View.ALPHA,1f).setDuration(500)
+        val emailEditTextLayout = ObjectAnimator.ofFloat(binding.etUsername, View.ALPHA,1f).setDuration(500)
+        val passwordEditTextLayout = ObjectAnimator.ofFloat(binding.etPassword, View.ALPHA,1f).setDuration(500)
+        val loginBtn = ObjectAnimator.ofFloat(binding.btnLogin, View.ALPHA,1f).setDuration(500)
+        val tvTxtRegist = ObjectAnimator.ofFloat(binding.tvTxtRegister, View.ALPHA,1f).setDuration(500)
+        val tvRegist = ObjectAnimator.ofFloat(binding.tvRegister, View.ALPHA,1f).setDuration(500)
+
+        val together = AnimatorSet().apply {
+            playTogether(tvTxtRegist,tvRegist)
+        }
+
+        AnimatorSet().apply {
+            playSequentially(titleTextView,emailEditTextLayout,passwordEditTextLayout,loginBtn,together)
+            start()
+        }
     }
 
     private fun setViewModel() {
