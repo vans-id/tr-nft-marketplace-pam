@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         setupViewModel()
         setupFragment()
     }
@@ -47,6 +49,26 @@ class MainActivity : AppCompatActivity() {
             this,
             ViewModelFactory(UserPreference.getInstance(dataStore))
         )[MainViewModel::class.java]
+
+        mainViewModel.getThemeSetting().observe(this) {
+            when (it) {
+                0 -> {
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                    )
+                }
+                1 -> {
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_NO
+                    )
+                }
+                2 -> {
+                    AppCompatDelegate.setDefaultNightMode(
+                        AppCompatDelegate.MODE_NIGHT_YES
+                    )
+                }
+            }
+        }
 
         mainViewModel.getUser().observe(this) {
             user = User(

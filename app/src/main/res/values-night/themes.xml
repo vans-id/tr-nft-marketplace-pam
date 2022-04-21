@@ -32,8 +32,12 @@
     </style>
 
     <style name="txtColorBlue">
-        <item name="android:textColor">@color/blue_200</item>
-        <item name="android:tint">@color/blue_200</item>
+        <item name="android:textColor">@color/blue_500</item>
+        <item name="android:tint">@color/blue_500</item>
+    </style>
+    <style name="txtColorSecondary.">
+        <item name="android:textColor">@color/bg_gray</item>
+        <item name="android:tint">@color/bg_gray</item>
     </style>
 
     <style name="backgroundColor">
