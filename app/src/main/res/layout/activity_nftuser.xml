@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.user_nft.NFTUserActivity">
+    tools:context=".ui.main.user_nft.NFTUserActivity"
+    style="@style/backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -29,9 +30,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:textAlignment="center"
-            android:textColor="@color/dark_500"
             android:textSize="28sp"
             android:textStyle="bold"
+            style="@style/txtColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_avatar"
@@ -74,8 +75,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     android:textAlignment="center"
-                    android:textColor="@color/grey"
                     android:textSize="18sp"
+                    style="@style/txtColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -94,6 +95,7 @@
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
+            style="@style/txtColorBlue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cv_wallet" />
 
@@ -106,6 +108,7 @@
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="italic"
+            style="@style/txtColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_txtAbout"
             tools:text="@tools:sample/lorem" />
@@ -120,6 +123,7 @@
             android:textAlignment="center"
             android:textSize="16sp"
             android:textStyle="bold"
+            style="@style/txtColorBlue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_about" />
 

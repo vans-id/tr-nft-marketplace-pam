@@ -17,8 +17,8 @@
     </string>
 
     <!--    Strings used for Confirm Dialog -->
-    <string name="confirm_buy">Konfirmasi</string>
-    <string name="cancel_buy">batal</string>
+    <string name="confirm_buy">Confirm</string>
+    <string name="cancel_buy">Cancel</string>
 
     <!--    Strings used for Add Fragment-->
     <string name="nft_title">NFT Title</string>
@@ -82,4 +82,11 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="created_by">Created by</string>
+
+    <!--    String user for Profile Page-->
+    <string name="language">Language</string>
+    <string name="collection_page">Collection Page</string>
+    <string name="favorite_page">Favorite Page</string>
+    <string name="theme_setting">Theme Setting</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.user.profile.ProfileFragment">
+    tools:context=".ui.user.profile.ProfileFragment"
+    style="@style/backgroundColor">
 
     <ImageView
         android:id="@+id/iv_avatar"
@@ -25,7 +26,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:textAlignment="center"
-        android:textColor="@color/dark_500"
+        style="@style/txtColor"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +71,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:textAlignment="center"
-                android:textColor="@color/grey"
+                style="@style/txtColor"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -90,6 +91,7 @@
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
+        style="@style/txtColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cv_wallet"
@@ -138,6 +140,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_eth" />
 
+    <View
+        android:id="@+id/v_hr6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/border_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_language" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btn_profile"
         android:layout_width="match_parent"
@@ -154,6 +165,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            style="@style/txtColor"
             android:src="@drawable/ic_baseline_person_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -164,9 +176,10 @@
             android:layout_height="16dp"
             android:layout_marginStart="16dp"
             android:letterSpacing="0.1"
-            android:text="About Me"
+            android:text="@string/about"
             android:textAllCaps="true"
             android:textStyle="bold"
+            style="@style/txtColor"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintStart_toEndOf="@+id/iv_profile"
             app:layout_constraintTop_toTopOf="@+id/iv_profile" />
@@ -189,6 +202,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            style="@style/txtColor"
             android:src="@drawable/ic_baseline_favorite_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -199,9 +213,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:letterSpacing="0.1"
-            android:text="Favorite Page"
+            android:text="@string/favorite_page"
             android:textAllCaps="true"
             android:textStyle="bold"
+            style="@style/txtColor"
             app:layout_constraintBottom_toBottomOf="@+id/iv_favorite"
             app:layout_constraintStart_toEndOf="@+id/iv_favorite"
             app:layout_constraintTop_toTopOf="@+id/iv_favorite" />
@@ -223,6 +238,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            style="@style/txtColor"
             android:src="@drawable/ic_baseline_settings_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -233,19 +249,71 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:letterSpacing="0.1"
-            android:text="Setting Page"
+            android:text="@string/theme_setting"
             android:textAllCaps="true"
             android:textStyle="bold"
+            style="@style/txtColor"
             app:layout_constraintBottom_toBottomOf="@id/iv_setting"
             app:layout_constraintStart_toEndOf="@id/iv_setting"
             app:layout_constraintTop_toTopOf="@id/iv_setting" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/btn_logout"
+        android:id="@+id/btn_language"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/btn_setting"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageView
+            android:id="@+id/iv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            style="@style/txtColor"
+            android:src="@drawable/ic_baseline_language_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:letterSpacing="0.1"
+            android:text="@string/language"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            style="@style/txtColor"
+            app:layout_constraintBottom_toBottomOf="@id/iv_language"
+            app:layout_constraintStart_toEndOf="@id/iv_language"
+            app:layout_constraintTop_toTopOf="@id/iv_language" />
+
+        <TextView
+            android:id="@+id/tv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:letterSpacing="0.1"
+            android:text="@string/language"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            style="@style/txtColor"
+            app:layout_constraintBottom_toBottomOf="@id/iv_language"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_language" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_language"
         tools:layout_editor_absoluteX="0dp">
 
         <ImageView
@@ -257,6 +325,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:src="@drawable/ic_baseline_logout_24"
+            style="@style/txtColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -266,9 +335,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:letterSpacing="0.1"
-            android:text="Logout"
+            android:text="@string/logout"
             android:textAllCaps="true"
             android:textStyle="bold"
+            style="@style/txtColor"
             app:layout_constraintBottom_toBottomOf="@id/iv_logout"
             app:layout_constraintStart_toEndOf="@id/iv_logout"
             app:layout_constraintTop_toTopOf="@id/iv_logout" />
@@ -289,6 +359,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            style="@style/txtColor"
             android:src="@drawable/ic_baseline_collections_bookmark_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -299,9 +370,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:letterSpacing="0.1"
-            android:text="Collection Page"
+            android:text="@string/collection_page"
             android:textAllCaps="true"
             android:textStyle="bold"
+            style="@style/txtColor"
             app:layout_constraintBottom_toBottomOf="@+id/iv_collection"
             app:layout_constraintStart_toEndOf="@+id/iv_collection"
             app:layout_constraintTop_toTopOf="@+id/iv_collection" />
