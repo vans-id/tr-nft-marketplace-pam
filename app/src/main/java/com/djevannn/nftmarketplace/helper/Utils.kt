@@ -133,8 +133,10 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
 }
 
 fun formatNumber(myNumber: Double): String {
-    val formatter: NumberFormat = DecimalFormat("#,###.00")
-    return formatter.format(myNumber)
+    return if (myNumber <= 0) "0.00" else {
+        val formatter: NumberFormat = DecimalFormat("#,###.00")
+        formatter.format(myNumber)
+    }
 }
 
 fun generateETHWallet(): String = "0x" + List(40) {

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">NFT Marketplace</string>
-    <string name="title_home">Explore NFTs</string>
+    <string name="title_home">Explor NFT</string>
     <string name="title_add">Membuat NFT</string>
     <string name="title_profile">Profile Saya</string>
     <string name="title_activity_detail">Detail NFT</string>

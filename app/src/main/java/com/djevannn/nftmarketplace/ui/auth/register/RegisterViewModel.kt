@@ -37,7 +37,10 @@ class RegisterViewModel(private val pref: UserPreference) :
             username = username,
             password = password,
             created_at = dateInString,
-            wallet = generateETHWallet()
+            wallet = generateETHWallet(),
+            about = "",
+            balance = 0.0,
+            photo_url = "https://ui-avatars.com/api/?background=random&name=$name"
         )
         if (userId != null) {
             ref.child(userId).setValue(user).apply {
