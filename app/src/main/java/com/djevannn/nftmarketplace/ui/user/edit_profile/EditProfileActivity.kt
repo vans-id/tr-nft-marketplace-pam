@@ -120,11 +120,12 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun setupView() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "About Me"
     }
 
-    override fun onNavigateUp(): Boolean {
-        onBackPressed()
-        return super.onNavigateUp()
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     private fun showDialogs(msg: String, status: Boolean) {

@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class User(
     val about: String,
-    val balance: Double,
+    var balance: Double,
     val created_at: String,
     val name: String,
     val password: String,

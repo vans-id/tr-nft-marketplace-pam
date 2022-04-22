@@ -8,24 +8,27 @@
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/ic_baseline_key_24.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/ic_ethereum_background.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/navigation_bar.xml" value="0.1" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout-v23/fragment_profile.xml" value="0.1381340579710145" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_collection.xml" value="0.14130434782608695" />
-        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_detail.xml" value="0.33" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_detail.xml" value="0.16666666666666666" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_favorite.xml" value="0.14130434782608695" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_listing.xml" value="0.14583333333333334" />
-        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_login.xml" value="0.209375" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_login.xml" value="0.16666666666666666" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_nftuser.xml" value="0.33" />
-        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_nftuser.xml" value="0.1381340579710145" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_register.xml" value="0.1322463768115942" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_setting.xml" value="0.209375" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/bg_button_border.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/custom_dialog.xml" value="0.22" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/dialog_checkout.xml" value="0.1381340579710145" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/dialog_topup.xml" value="0.3333333333333333" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/fragment_add.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/fragment_dashboard.xml" value="0.14130434782608695" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/fragment_home.xml" value="0.22" />
-        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/fragment_profile.xml" value="0.18" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/item_row_asset.xml" value="0.16666666666666666" />
-        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/item_row_listing.xml" value="0.5" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/item_row_listing.xml" value="0.16666666666666666" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/item_row_nft.xml" value="0.22" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2" />
       </map>

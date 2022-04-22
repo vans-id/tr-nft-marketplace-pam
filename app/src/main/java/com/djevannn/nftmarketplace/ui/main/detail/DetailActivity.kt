@@ -131,7 +131,7 @@ class DetailActivity : AppCompatActivity() {
     private fun showConfirmDialog(data: NFT) {
         val builder = AlertDialog.Builder(this, 0).create()
         val view =
-            layoutInflater.inflate(R.layout.custom_dialog, null)
+            layoutInflater.inflate(R.layout.dialog_checkout, null)
         val tvTitle =
             view.findViewById<TextView>(R.id.tv_confirm_title)
         val tvPrice =

@@ -89,4 +89,6 @@
     <string name="favorite_page">Halaman Favorit</string>
     <string name="theme_setting">Halaman Tema</string>
     <string name="logout">Keluar</string>
+    <string name="total_balance">Saldo</string>
+    <string name="top_up">Top Up</string>
 </resources>

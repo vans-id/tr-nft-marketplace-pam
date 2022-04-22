@@ -8,6 +8,7 @@ import com.djevannn.nftmarketplace.data.User
 import com.djevannn.nftmarketplace.data.UserRegist
 import com.djevannn.nftmarketplace.helper.ResponseCallback
 import com.djevannn.nftmarketplace.helper.UserPreference
+import com.djevannn.nftmarketplace.helper.generateETHWallet
 import com.djevannn.nftmarketplace.helper.getCurrentDate
 import com.google.firebase.database.FirebaseDatabase
 
@@ -36,6 +37,7 @@ class RegisterViewModel(private val pref: UserPreference) :
             username = username,
             password = password,
             created_at = dateInString,
+            wallet = generateETHWallet()
         )
         if (userId != null) {
             ref.child(userId).setValue(user).apply {

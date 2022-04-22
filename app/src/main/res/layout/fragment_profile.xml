@@ -1,41 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="@color/bg_gray"
     tools:context=".ui.user.profile.ProfileFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/backgroundColor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/backgroundColor">
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/pb_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_avatar"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="16dp"
             android:contentDescription="Avatar Images"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/cv_wallet"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_name"
             tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:textAlignment="center"
             style="@style/txtColor"
-            android:textSize="28sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+            app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Narendra Wicaksono" />
 
 
@@ -43,24 +53,23 @@
             android:id="@+id/cv_wallet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             app:cardCornerRadius="32dp"
             app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
             app:strokeColor="@color/border_gray"
             app:strokeWidth="1dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="8dp"
                     android:src="@drawable/ic_ethereum_foreground"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_wallet"
                     app:layout_constraintStart_toStartOf="parent"
@@ -68,15 +77,14 @@
 
                 <TextView
                     android:id="@+id/tv_wallet"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
                     android:textAlignment="center"
-                    style="@style/txtColor"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -85,21 +93,65 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/tv_eth"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            style="@style/txtColor"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_wallet"
-            tools:text="99 ETH" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+            app:strokeColor="@color/border_gray"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_eth"
+                    style="@style/txtColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_eth2"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_eth2"
+                    tools:text="99 ETH" />
+
+                <Button
+                    android:id="@+id/btn_topup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:drawableEnd="@drawable/ic_baseline_add_24"
+                    android:drawableTint="@color/white"
+                    android:text="@string/top_up"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_eth"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_eth2" />
+
+                <TextView
+                    android:id="@+id/tv_eth2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/total_balance"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <View
             android:id="@+id/v_hr1"
@@ -116,7 +168,6 @@
             android:background="@color/border_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_collection" />
-
 
         <View
             android:id="@+id/v_hr3"
@@ -139,10 +190,9 @@
             android:id="@+id/v_hr5"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="16dp"
             android:background="@color/border_gray"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_eth" />
+            app:layout_constraintTop_toTopOf="@+id/btn_profile" />
 
         <View
             android:id="@+id/v_hr6"
@@ -153,29 +203,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_language" />
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/btn_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/v_hr5">
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
             <ImageView
                 android:id="@+id/iv_profile"
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                style="@style/txtColor"
+                android:contentDescription="@string/title_profile"
                 android:src="@drawable/ic_baseline_person_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                style="@style/txtColor"
                 android:layout_width="79dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="16dp"
@@ -183,7 +237,6 @@
                 android:text="@string/about"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                style="@style/txtColor"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
                 app:layout_constraintStart_toEndOf="@+id/iv_profile"
                 app:layout_constraintTop_toTopOf="@+id/iv_profile" />
@@ -200,19 +253,20 @@
 
             <ImageView
                 android:id="@+id/iv_favorite"
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                style="@style/txtColor"
                 android:src="@drawable/ic_baseline_favorite_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -220,7 +274,6 @@
                 android:text="@string/favorite_page"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                style="@style/txtColor"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_favorite"
                 app:layout_constraintStart_toEndOf="@+id/iv_favorite"
                 app:layout_constraintTop_toTopOf="@+id/iv_favorite" />
@@ -236,19 +289,20 @@
 
             <ImageView
                 android:id="@+id/iv_setting"
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                style="@style/txtColor"
                 android:src="@drawable/ic_baseline_settings_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -256,7 +310,6 @@
                 android:text="@string/theme_setting"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                style="@style/txtColor"
                 app:layout_constraintBottom_toBottomOf="@id/iv_setting"
                 app:layout_constraintStart_toEndOf="@id/iv_setting"
                 app:layout_constraintTop_toTopOf="@id/iv_setting" />
@@ -271,19 +324,20 @@
 
             <ImageView
                 android:id="@+id/iv_language"
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                style="@style/txtColor"
                 android:src="@drawable/ic_baseline_language_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -291,13 +345,13 @@
                 android:text="@string/language"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                style="@style/txtColor"
                 app:layout_constraintBottom_toBottomOf="@id/iv_language"
                 app:layout_constraintStart_toEndOf="@id/iv_language"
                 app:layout_constraintTop_toTopOf="@id/iv_language" />
 
             <TextView
                 android:id="@+id/tv_language"
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -305,7 +359,6 @@
                 android:text="@string/language"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                style="@style/txtColor"
                 app:layout_constraintBottom_toBottomOf="@id/iv_language"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/iv_language" />
@@ -322,6 +375,7 @@
 
             <ImageView
                 android:id="@+id/iv_logout"
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -329,12 +383,12 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:src="@drawable/ic_baseline_logout_24"
-                style="@style/txtColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -342,7 +396,6 @@
                 android:text="@string/logout"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                style="@style/txtColor"
                 app:layout_constraintBottom_toBottomOf="@id/iv_logout"
                 app:layout_constraintStart_toEndOf="@id/iv_logout"
                 app:layout_constraintTop_toTopOf="@id/iv_logout" />
@@ -357,19 +410,20 @@
 
             <ImageView
                 android:id="@+id/iv_collection"
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                style="@style/txtColor"
                 android:src="@drawable/ic_baseline_collections_bookmark_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                style="@style/txtColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -377,7 +431,6 @@
                 android:text="@string/collection_page"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                style="@style/txtColor"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_collection"
                 app:layout_constraintStart_toEndOf="@+id/iv_collection"
                 app:layout_constraintTop_toTopOf="@+id/iv_collection" />
