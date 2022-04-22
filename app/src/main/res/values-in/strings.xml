@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name">NFT Marketplace</string>
+    <string name="title_home">Explore NFTs</string>
+    <string name="title_add">Membuat NFT</string>
+    <string name="title_profile">Profile Saya</string>
+    <string name="title_activity_detail">Detail NFT</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Fragment Pertama</string>
+    <string name="second_fragment_label">Fragment Kedua</string>
+    <string name="next">Selanjutnya</string>
+    <string name="previous">Sebelum</string>
+
+    <string name="hello_first_fragment">Halo Fragment Pertama</string>
+    <string name="hello_second_fragment">Halo Fragment Kedua. Arg:
+        %1$s
+    </string>
+
+    <!--    Strings used for Confirm Dialog -->
+    <string name="confirm_buy">Konfirmasi</string>
+    <string name="cancel_buy">Batal</string>
+
+    <!--    Strings used for Add Fragment-->
+    <string name="nft_title">Nama NFT</string>
+    <string name="enter_nft_description">Masukkan Deskripsi NFT</string>
+    <string name="price_in_eth">Harga dalam ETH</string>
+    <string name="upload_image">Upload Gambar</string>
+    <string name="creator_fee">Fee Kreator (%)</string>
+    <string name="create_nft">Buat NFT</string>
+
+    <!--    Strings used for Login Activity-->
+    <string name="login_to_your_account">Masuk ke dalam akun personal anda</string>
+    <string name="username">Username</string>
+    <string name="new_user">Tidak memiliki akun?</string>
+    <string name="register_now">Daftar Now!</string>
+    <string name="login">Masuk</string>
+    <string name="login_now">Masuk Sekarang</string>
+    <string name="already_have_account">Sudah memiliki akun?</string>
+    <string name="register">Daftar</string>
+    <string name="register_new_account">Daftarkan diri anda sekarang</string>
+    <string name="name">Nama Lengkap</string>
+    <string name="password">Kata Sandi</string>
+    <string name="register_success">Proses pendaftaran berhasil!</string>
+    <string name="register_error">Proses pendaftaran gagal!, %1$s</string>
+    <string name="repeat">Ulangi</string>
+    <string name="login_success">Proses login berhasil, anda akan dialihkan ke menu utama</string>
+    <string name="login_error">Proses login gagal, mohon periksa kembali detail akun anda</string>
+    <string name="search_image">Cari gambar</string>
+    <string name="name_error_field">Kolom nama harus diisi!</string>
+    <string name="username_empty">Kolom username harus diisi!</string>
+    <string name="password_empty">Kolom kata sandi harus diisi</string>
+    <string name="password_error_field">Kata sandi harus memiliki minimal 6 karakter</string>
+    <string name="pilih_tema">Pilih tema aplikasi</string>
+    <string name="auto">Automatis</string>
+    <string name="light_theme">Tema Terang</string>
+    <string name="dark_theme">Tema Gelap</string>
+    <string name="setting_page">Halaman pengaturan</string>
+    <string name="logout_dialog">Anda yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="about">Tentang saya</string>
+    <string name="url_photo">URL Gambar</string>
+    <string name="wallet_address">Alamat Dompet</string>
+    <string name="change_detail">Simpan perubahan</string>
+    <string name="edit_profile_success">Ubah Profil Berhasil!</string>
+    <string name="edit_profile_error">Ubah profil gagal, %1$s</string>
+
+    <!--    Strings used for Detail Activity-->
+    <string name="owned_by">Dimiliki oleh</string>
+    <string name="cd_ethereum">ethereum</string>
+    <string name="listings">Riwayat</string>
+    <string name="icon">ikon</string>
+    <string name="description">Deskripsi</string>
+    <string name="about_creator">Tentang Kreator</string>
+    <string name="creator">kreator</string>
+
+    <!--    Strings used for Confirm Dialog-->
+    <string name="buy_now">Beli sekarang</string>
+    <string name="checkout">Checkout</string>
+    <string name="title">Nama</string>
+    <string name="price">Harga</string>
+    <string name="confirm">Konfirmasi</string>
+    <string name="cancel">Batal</string>
+    <string name="created_by">Dibuat oleh</string>
+
+    <!--    String user for Profile Page-->
+    <string name="language">Bahasa</string>
+    <string name="collection_page">Halaman Koleksi</string>
+    <string name="favorite_page">Halaman Favorit</string>
+    <string name="theme_setting">Halaman Tema</string>
+    <string name="logout">Keluar</string>
+</resources>

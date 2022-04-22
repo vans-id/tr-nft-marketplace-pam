@@ -1,10 +1,13 @@
 package com.djevannn.nftmarketplace.ui.auth.register
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
@@ -38,7 +41,29 @@ class RegisterActivity : AppCompatActivity() {
         setupView()
         setupViewModel()
         setupAction()
+        playAnimation()
     }
+
+    private fun playAnimation() {
+
+        val titleTextView = ObjectAnimator.ofFloat(binding.tvTitle, View.ALPHA,1f).setDuration(500)
+        val nameEditTextLayout = ObjectAnimator.ofFloat(binding.etName, View.ALPHA,1f).setDuration(500)
+        val emailEditTextLayout = ObjectAnimator.ofFloat(binding.etUsername, View.ALPHA,1f).setDuration(500)
+        val passwordEditTextLayout = ObjectAnimator.ofFloat(binding.etPassword, View.ALPHA,1f).setDuration(500)
+        val loginBtn = ObjectAnimator.ofFloat(binding.btnRegister, View.ALPHA,1f).setDuration(500)
+        val tvTxtRegist = ObjectAnimator.ofFloat(binding.tvTxtLogin, View.ALPHA,1f).setDuration(500)
+        val tvRegist = ObjectAnimator.ofFloat(binding.tvLogin, View.ALPHA,1f).setDuration(500)
+
+        val together = AnimatorSet().apply {
+            playTogether(tvTxtRegist,tvRegist)
+        }
+
+        AnimatorSet().apply {
+            playSequentially(titleTextView,nameEditTextLayout,emailEditTextLayout,passwordEditTextLayout,loginBtn,together)
+            start()
+        }
+    }
+
 
     private fun setupViewModel() {
         viewModel = ViewModelProvider(

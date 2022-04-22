@@ -17,5 +17,6 @@
     <color name="blue_500">#ff434AF5</color>
     <color name="blue_700">#ff0055b0</color>
     <color name="dark_500">#ff2D314A</color>
+    <color name="dark_600">#12131D</color>
     <color name="dark_700">#ff000000</color>
 </resources>
