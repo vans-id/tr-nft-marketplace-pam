@@ -136,3 +136,7 @@ fun formatNumber(myNumber: Double): String {
     val formatter: NumberFormat = DecimalFormat("#,###.00")
     return formatter.format(myNumber)
 }
+
+fun generateETHWallet(): String = "0x" + List(40) {
+    (('0'..'9') + ('A'..'F') + ('a'..'f')).random()
+}.joinToString("")

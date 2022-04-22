@@ -35,7 +35,7 @@ class RegisterViewModel(private val pref: UserPreference) :
             name = name,
             username = username,
             password = password,
-            created_at = dateInString
+            created_at = dateInString,
         )
         if (userId != null) {
             ref.child(userId).setValue(user).apply {
