@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.auth.login.LoginActivity">
+    tools:context=".ui.auth.login.LoginActivity"
+    style="@style/backgroundColor">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/iv_logo"
@@ -30,6 +31,9 @@
         android:textStyle="bold"
         android:textAlignment="center"
         android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="32dp"
+        android:alpha="0"
+        style="@style/txtColor"
         app:layout_constraintTop_toBottomOf="@id/iv_logo"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -41,6 +45,7 @@
         android:hint="@string/username"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="32dp"
+        android:alpha="0"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:startIconDrawable="@drawable/ic_baseline_person_24"
@@ -62,6 +67,7 @@
         app:layout_constraintTop_toBottomOf="@id/et_username"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginHorizontal="32dp"
+        android:alpha="0"
         app:startIconDrawable="@drawable/ic_baseline_key_24"
         app:passwordToggleEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -82,6 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:text="@string/login"
+        android:alpha="0"
         android:paddingVertical="8dp"/>
 
     <TextView
@@ -92,6 +99,8 @@
         android:textAlignment="center"
         android:text="@string/new_user"
         android:textSize="14sp"
+        android:alpha="0"
+        style="@style/txtColor"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login" />
@@ -103,6 +112,8 @@
         android:textSize="14sp"
         android:textStyle="bold"
         android:textAlignment="center"
+        style="@style/txtColorBlue"
+        android:alpha="0"
         app:layout_constraintTop_toBottomOf="@id/tv_txtRegister"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
