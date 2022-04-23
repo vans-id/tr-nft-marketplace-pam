@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/bg_authentication.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/bg_button_border.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/ic_baseline_key_24.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/ic_ethereum_background.xml" value="0.1" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/ic_ethereum_foreground.xml" value="0.1" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/drawable/navigation_bar.xml" value="0.1" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout-v23/fragment_profile.xml" value="0.1381340579710145" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/activity_collection.xml" value="0.14130434782608695" />
@@ -31,6 +34,10 @@
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/item_row_listing.xml" value="0.16666666666666666" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/layout/item_row_nft.xml" value="0.22" />
         <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/mipmap-anydpi-v26/ic_ethereum.xml" value="0.1" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/mipmap-anydpi-v26/ic_launcher_nft.xml" value="0.1" />
+        <entry key="..\:/kuliah/Smt 8 PAM/NFTMarketplace/app/src/main/res/mipmap-anydpi-v26/ic_launcher_nft_round.xml" value="0.1" />
       </map>
     </option>
   </component>

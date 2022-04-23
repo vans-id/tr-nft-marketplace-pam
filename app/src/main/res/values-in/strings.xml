@@ -67,6 +67,8 @@
     <string name="change_detail">Simpan perubahan</string>
     <string name="edit_profile_success">Ubah Profil Berhasil!</string>
     <string name="edit_profile_error">Ubah profil gagal, %1$s</string>
+    <string name="register_error_user_found">User sudah ada!</string>
+
 
     <!--    Strings used for Detail Activity-->
     <string name="owned_by">Dimiliki oleh</string>
@@ -94,5 +96,4 @@
     <string name="logout">Keluar</string>
     <string name="total_balance">Saldo</string>
     <string name="top_up">Top Up</string>
-    <string name="register_error_user_found">User sudah ada!</string>
 </resources>
