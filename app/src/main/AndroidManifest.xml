@@ -16,7 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NFTMarketplace">
         <activity
-            android:name="com.djevannn.nftmarketplace.ui.main.user_nft.NFTUserActivity"
+            android:name=".ui.splash_screen.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.main.user_nft.NFTUserActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.listings.ListingActivity"
@@ -50,20 +59,12 @@
         <activity
             android:name=".ui.main.detail.DetailActivity"
             android:exported="false"
-            android:label="@string/title_activity_detail" /> <!-- > -->
-        <!-- <meta-data -->
-        <!-- android:name="android.support.PARENT_ACTIVITY" -->
-        <!-- android:value=".MainActivity" /> -->
-        <!-- </activity> -->
+            android:label="@string/title_activity_detail" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

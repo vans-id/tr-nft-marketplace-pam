@@ -34,7 +34,7 @@ class CollectionActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.collections_page)
+        supportActionBar?.title = getString(R.string.collection_page)
 
         viewModel = ViewModelProvider(
             this,
