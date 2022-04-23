@@ -27,6 +27,9 @@
     <string name="upload_image">Upload Gambar</string>
     <string name="creator_fee">Fee Kreator (%)</string>
     <string name="create_nft">Buat NFT</string>
+    <string name="nft_url">NFT Url Photo</string>
+    <string name="nft_successful_created">NFT Sukses dibuat</string>
+    <string name="nft_failed_created">NFT gagal dibuat</string>
 
     <!--    Strings used for Login Activity-->
     <string name="login_to_your_account">Masuk ke dalam akun personal anda</string>
@@ -91,4 +94,5 @@
     <string name="logout">Keluar</string>
     <string name="total_balance">Saldo</string>
     <string name="top_up">Top Up</string>
+    <string name="register_error_user_found">User sudah ada!</string>
 </resources>

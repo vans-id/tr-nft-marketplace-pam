@@ -148,7 +148,7 @@ class RegisterActivity : AppCompatActivity() {
                             }
                         })
                 }else {
-                    showDialogs("User sudah ada!", false)
+                    showDialogs(getString(R.string.register_error_user_found), false)
                 }
             }
 
