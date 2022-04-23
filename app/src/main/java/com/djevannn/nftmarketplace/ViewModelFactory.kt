@@ -13,6 +13,7 @@ import com.djevannn.nftmarketplace.ui.auth.login.LoginViewModel
 import com.djevannn.nftmarketplace.ui.user.profile.ProfileViewModel
 import com.djevannn.nftmarketplace.ui.auth.register.RegisterViewModel
 import com.djevannn.nftmarketplace.ui.main.user_nft.NFTUserViewModel
+import com.djevannn.nftmarketplace.ui.splash_screen.SplashScreenViewModel
 
 class ViewModelFactory(private val pref: UserPreference) :
     ViewModelProvider.NewInstanceFactory() {
@@ -52,6 +53,9 @@ class ViewModelFactory(private val pref: UserPreference) :
             }
             modelClass.isAssignableFrom(AddViewModel::class.java) -> {
                 AddViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(SplashScreenViewModel::class.java) -> {
+                SplashScreenViewModel(pref) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

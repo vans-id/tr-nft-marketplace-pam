@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.djevannn.nftmarketplace.MainActivity
 import com.djevannn.nftmarketplace.R
 import com.djevannn.nftmarketplace.ViewModelFactory
 import com.djevannn.nftmarketplace.data.User
@@ -144,8 +145,8 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
         binding.btnLogout.setOnClickListener {
-            viewModel.logout()
-            activity?.finish()
+            showLogoutDialog()
+
         }
         binding.btnLanguage.setOnClickListener {
             startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
@@ -186,6 +187,29 @@ class ProfileFragment : Fragment() {
                 ).show()
             }
             builder.dismiss()
+        }
+        btnCancel.setOnClickListener {
+            builder.dismiss()
+        }
+
+        builder.show()
+    }
+
+    private fun showLogoutDialog() {
+        val builder =
+            AlertDialog.Builder(requireContext(), 0).create()
+        val view =
+            layoutInflater.inflate(R.layout.dialog_logout, null)
+        val btnConfirm = view.findViewById<Button>(R.id.btn_confirm)
+        val btnCancel = view.findViewById<Button>(R.id.btn_cancel)
+
+        builder.setView(view)
+
+        btnConfirm.setOnClickListener {
+            viewModel.logout()
+            val i = Intent(activity, MainActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(i)
         }
         btnCancel.setOnClickListener {
             builder.dismiss()
