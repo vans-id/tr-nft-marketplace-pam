@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.djevannn.nftmarketplace.R
 import com.djevannn.nftmarketplace.adapters.listing.ListingAdapter
 import com.djevannn.nftmarketplace.databinding.ActivityListingBinding
 
@@ -20,7 +21,7 @@ class ListingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Listings"
+        supportActionBar?.title = getString(R.string.listings_page)
 
         val listingAdapter = ListingAdapter()
         with(binding.rvListings) {

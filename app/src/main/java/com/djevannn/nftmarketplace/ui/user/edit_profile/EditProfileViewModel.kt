@@ -12,9 +12,6 @@ class EditProfileViewModel(private val pref: UserPreference) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isFound = MutableLiveData<Boolean>()
-    val isFound: LiveData<Boolean> = _isFound
-
     fun getUser(): LiveData<User> {
         return pref.getUser().asLiveData()
     }
@@ -27,9 +24,8 @@ class EditProfileViewModel(private val pref: UserPreference) : ViewModel() {
         _isLoading.value = true
 
         val ref = FirebaseDatabase.getInstance().getReference("users")
-        val userId = key
 
-        ref.child(userId).setValue(userRegist).apply {
+        ref.child(key).setValue(userRegist).apply {
             addOnCompleteListener {
                 val user = User(
                     about = userRegist.about,
@@ -44,9 +40,11 @@ class EditProfileViewModel(private val pref: UserPreference) : ViewModel() {
                 )
                 saveUser(user)
                 callback.getCallback("", true)
+                _isLoading.value = false
             }
             addOnCanceledListener {
                 callback.getCallback("", false)
+                _isLoading.value = false
             }
         }
         _isLoading.value = false

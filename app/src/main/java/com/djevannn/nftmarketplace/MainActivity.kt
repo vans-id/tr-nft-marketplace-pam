@@ -2,10 +2,7 @@ package com.djevannn.nftmarketplace
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.WindowInsets
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
@@ -37,7 +34,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         setupViewModel()
         setupFragment()

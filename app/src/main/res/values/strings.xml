@@ -27,6 +27,9 @@
     <string name="upload_image">Upload Image</string>
     <string name="creator_fee">Creator Fee (%)</string>
     <string name="create_nft">Create NFT</string>
+    <string name="nft_url">NFT Url Image</string>
+    <string name="nft_successful_created">NFT Successful Created</string>
+    <string name="nft_failed_created">NFT Failed Created</string>
 
     <!--    Strings used for Login Activity-->
     <string name="login_to_your_account">Login to your personal account</string>
@@ -64,6 +67,7 @@
     <string name="change_detail">Save Changes</string>
     <string name="edit_profile_success">Edit Profile Success!</string>
     <string name="edit_profile_error">Edit profile error, %1$s</string>
+    <string name="register_error_user_found">User found!</string>
 
     <!--    Strings used for Detail Activity-->
     <string name="owned_by">Owned by</string>
@@ -91,4 +95,9 @@
     <string name="logout">Logout</string>
     <string name="total_balance">Balance</string>
     <string name="top_up">Top Up</string>
+    <string name="edit_profile_page">Edit Profile Page</string>
+    <string name="invalid_amount_of_eth">Invalid Amount of ETH</string>
+    <string name="listings_page">NFT History</string>
+    <string name="_0_0_eth">0.0 ETH</string>
+
 </resources>

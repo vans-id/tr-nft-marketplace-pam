@@ -24,12 +24,15 @@ class NFTUserViewModel(private val pref: UserPreference): ViewModel() {
     private val _collectionList = MutableLiveData<List<NFT>>()
     val collectionList: LiveData<List<NFT>> = _collectionList
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     fun getUserNFT(username: String){
+        _isLoading.value = true
         FirebaseDatabase.getInstance().getReference("users")
             .addListenerForSingleValueEvent(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    var res = UserRegist("", 0.0, "","","","","","")
                     for (data in snapshot.children) {
                         if (data.child("username").value == username) {
                             Log.d("GET DATA", "onDataChange: $data")
@@ -44,6 +47,8 @@ class NFTUserViewModel(private val pref: UserPreference): ViewModel() {
                                 wallet = data.child("wallet").value.toString(),
                             )
                             _userNFT.value = userNFTs
+                            _isLoading.value = false
+
                         }
 
                     }
@@ -51,11 +56,13 @@ class NFTUserViewModel(private val pref: UserPreference): ViewModel() {
 
                 override fun onCancelled(error: DatabaseError) {
                     Log.d("Transfer Error 1", error.toString())
+                    _isLoading.value = false
                 }
             })
     }
 
     fun fetchAllCollection(username: String) {
+        _isLoading.value = true
         val db = Firebase.database.reference
         val nftListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -67,10 +74,12 @@ class NFTUserViewModel(private val pref: UserPreference): ViewModel() {
                 }
 
                 _collectionList.value = res
+                _isLoading.value = false
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.d("OnCanceled", "onCancelled: $databaseError")
+                _isLoading.value = false
             }
         }
         // dapatkan username yang login disini

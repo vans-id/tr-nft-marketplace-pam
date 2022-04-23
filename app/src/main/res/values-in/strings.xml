@@ -27,6 +27,9 @@
     <string name="upload_image">Upload Gambar</string>
     <string name="creator_fee">Fee Kreator (%)</string>
     <string name="create_nft">Buat NFT</string>
+    <string name="nft_url">NFT Url Photo</string>
+    <string name="nft_successful_created">NFT Sukses dibuat</string>
+    <string name="nft_failed_created">NFT gagal dibuat</string>
 
     <!--    Strings used for Login Activity-->
     <string name="login_to_your_account">Masuk ke dalam akun personal anda</string>
@@ -64,6 +67,8 @@
     <string name="change_detail">Simpan perubahan</string>
     <string name="edit_profile_success">Ubah Profil Berhasil!</string>
     <string name="edit_profile_error">Ubah profil gagal, %1$s</string>
+    <string name="register_error_user_found">User sudah ada!</string>
+
 
     <!--    Strings used for Detail Activity-->
     <string name="owned_by">Dimiliki oleh</string>
@@ -91,4 +96,9 @@
     <string name="logout">Keluar</string>
     <string name="total_balance">Saldo</string>
     <string name="top_up">Top Up</string>
+    <string name="edit_profile_page">Halaman Edit Profile</string>
+    <string name="invalid_amount_of_eth">Jumlah ETH tidak mencukupi</string>
+    <string name="listings_page">Riwayat NFT</string>
+    <string name="_0_0_eth">0.0 ETH</string>
+
 </resources>

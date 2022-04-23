@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.djevannn.nftmarketplace.helper.UserPreference
 import com.djevannn.nftmarketplace.setting.SettingViewModel
+import com.djevannn.nftmarketplace.ui.add.AddViewModel
 import com.djevannn.nftmarketplace.ui.user.collection.CollectionViewModel
 import com.djevannn.nftmarketplace.ui.main.detail.DetailViewModel
 import com.djevannn.nftmarketplace.ui.user.edit_profile.EditProfileViewModel
@@ -48,6 +49,9 @@ class ViewModelFactory(private val pref: UserPreference) :
             }
             modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
                 EditProfileViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(AddViewModel::class.java) -> {
+                AddViewModel(pref) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

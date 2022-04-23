@@ -82,6 +82,13 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.pbProfile.visibility = when (it) {
+                true -> View.VISIBLE
+                false -> View.GONE
+            }
+        }
+
         return binding.root
     }
 
@@ -174,7 +181,7 @@ class ProfileFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Invalid Amount of ETH",
+                    getString(R.string.invalid_amount_of_eth),
                     Toast.LENGTH_SHORT
                 ).show()
             }

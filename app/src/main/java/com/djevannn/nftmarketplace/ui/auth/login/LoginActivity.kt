@@ -105,7 +105,7 @@ class LoginActivity : AppCompatActivity() {
                                 msg: String,
                                 status: Boolean
                             ) {
-                                showDialogs(msg, status)
+                                showDialogs(status)
                             }
                         })
                 }
@@ -132,7 +132,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDialogs(msg: String, status: Boolean) {
+    private fun showDialogs(status: Boolean) {
         if (status) {
             AlertDialog.Builder(this).apply {
                 setTitle("Yay !")
