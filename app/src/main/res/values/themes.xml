@@ -52,5 +52,10 @@
         <item name="android:backgroundTint">@color/bg_gray</item>
     </style>
 
+    <style name="backgroundColorBlue">
+        <item name="android:background">@color/dark_500</item>
+        <item name="android:backgroundTint">@color/dark_500</item>
+    </style>
+
 
 </resources>

@@ -96,4 +96,9 @@
     <string name="logout">Keluar</string>
     <string name="total_balance">Saldo</string>
     <string name="top_up">Top Up</string>
+    <string name="edit_profile_page">Halaman Edit Profile</string>
+    <string name="invalid_amount_of_eth">Jumlah ETH tidak mencukupi</string>
+    <string name="listings_page">Riwayat NFT</string>
+    <string name="_0_0_eth">0.0 ETH</string>
+
 </resources>

@@ -181,7 +181,7 @@ class ProfileFragment : Fragment() {
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Invalid Amount of ETH",
+                    getString(R.string.invalid_amount_of_eth),
                     Toast.LENGTH_SHORT
                 ).show()
             }

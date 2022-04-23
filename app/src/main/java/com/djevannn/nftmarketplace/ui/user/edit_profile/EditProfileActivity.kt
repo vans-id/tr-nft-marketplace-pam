@@ -128,7 +128,7 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun setupView() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "About Me"
+        supportActionBar?.title = getString(R.string.edit_profile_page)
     }
 
     override fun onSupportNavigateUp(): Boolean {

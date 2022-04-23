@@ -95,5 +95,9 @@
     <string name="logout">Logout</string>
     <string name="total_balance">Balance</string>
     <string name="top_up">Top Up</string>
+    <string name="edit_profile_page">Edit Profile Page</string>
+    <string name="invalid_amount_of_eth">Invalid Amount of ETH</string>
+    <string name="listings_page">NFT History</string>
+    <string name="_0_0_eth">0.0 ETH</string>
 
 </resources>
