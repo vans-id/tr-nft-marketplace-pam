@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -114,6 +115,13 @@ class EditProfileActivity : AppCompatActivity() {
                     .load(it.photo_url)
                     .apply(RequestOptions().override(300, 300))
                     .into(ivAvatar)
+            }
+        }
+
+        viewModel.isLoading.observe(this) {
+            binding.pbEditProfile.visibility = when (it) {
+                true -> View.VISIBLE
+                false -> View.GONE
             }
         }
     }

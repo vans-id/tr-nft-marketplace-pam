@@ -60,6 +60,13 @@ class AddFragment : Fragment() {
             this.user = it
         }
 
+        dashboardViewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.pbAdd.visibility = when (it) {
+                true -> View.VISIBLE
+                false -> View.GONE
+            }
+        }
+
         return binding.root
     }
 

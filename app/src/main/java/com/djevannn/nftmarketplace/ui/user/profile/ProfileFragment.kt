@@ -82,6 +82,13 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.pbProfile.visibility = when (it) {
+                true -> View.VISIBLE
+                false -> View.GONE
+            }
+        }
+
         return binding.root
     }
 

@@ -3,6 +3,7 @@ package com.djevannn.nftmarketplace.ui.main.user_nft
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -97,7 +98,6 @@ class NFTUserActivity : AppCompatActivity() {
             }
         }
 
-
         with(binding.rvCollection) {
             layoutManager =
                 LinearLayoutManager(context)
@@ -109,6 +109,13 @@ class NFTUserActivity : AppCompatActivity() {
         viewModel.collectionList.observe(this) {
             listNFTAdapter.setNFTs(it)
             listNFTAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.isLoading.observe(this) {
+            binding.pbOwner.visibility = when (it) {
+                true -> View.VISIBLE
+                false -> View.GONE
+            }
         }
 
     }

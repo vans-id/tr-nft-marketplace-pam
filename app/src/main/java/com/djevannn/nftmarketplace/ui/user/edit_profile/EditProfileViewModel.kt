@@ -40,9 +40,11 @@ class EditProfileViewModel(private val pref: UserPreference) : ViewModel() {
                 )
                 saveUser(user)
                 callback.getCallback("", true)
+                _isLoading.value = false
             }
             addOnCanceledListener {
                 callback.getCallback("", false)
+                _isLoading.value = false
             }
         }
         _isLoading.value = false

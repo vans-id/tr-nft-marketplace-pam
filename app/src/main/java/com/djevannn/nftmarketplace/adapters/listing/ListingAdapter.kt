@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.djevannn.nftmarketplace.R
 import com.djevannn.nftmarketplace.data.Listing
+import com.djevannn.nftmarketplace.helper.formatNumber
 
 class ListingAdapter : RecyclerView.Adapter<ListingViewHolder>() {
 
@@ -38,7 +39,7 @@ class ListingAdapter : RecyclerView.Adapter<ListingViewHolder>() {
             time
         ) = listings[position]
 
-        holder.tvListingEth.text = purchase_price.toString()
+        holder.tvListingEth.text = formatNumber(purchase_price)
         holder.tvListingFrom.text = prev_owner
         holder.tvListingTo.text = new_owner
         holder.tvListingDate.text = time
