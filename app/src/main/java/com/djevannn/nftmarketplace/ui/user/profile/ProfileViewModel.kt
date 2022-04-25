@@ -5,7 +5,9 @@ import android.os.LocaleList
 import android.util.Log
 import androidx.lifecycle.*
 import com.djevannn.nftmarketplace.data.User
+import com.djevannn.nftmarketplace.data.UserRegist
 import com.djevannn.nftmarketplace.helper.UserPreference
+import com.djevannn.nftmarketplace.helper.generateETHWallet
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -52,8 +54,19 @@ class ProfileViewModel(private val pref: UserPreference) :
 
                     newUser.balance += topUpBalance
 
+                    val saveUser = UserRegist(
+                        name = newUser.name,
+                        username = newUser.username,
+                        password = newUser.password,
+                        created_at = newUser.created_at,
+                        wallet = newUser.wallet,
+                        about = newUser.about,
+                        balance = newUser.balance,
+                        photo_url = newUser.photo_url
+                    )
+
                     db.child("users").child(key).setValue(
-                        newUser
+                        saveUser
                     ).addOnSuccessListener {
                         saveUser(newUser)
                         _message.value = "Berhasil melakukan topup"
