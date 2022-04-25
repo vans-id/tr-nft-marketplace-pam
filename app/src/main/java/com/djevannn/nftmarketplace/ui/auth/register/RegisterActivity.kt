@@ -127,7 +127,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun cekUser(): Boolean {
         var isFounds = false
         val db = FirebaseDatabase.getInstance().getReference("users")
-        db.addValueEventListener(object: ValueEventListener {
+        db.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
                     if (data.child("username").value == binding.etUsername.editText?.text.toString()) {
@@ -171,7 +171,6 @@ class RegisterActivity : AppCompatActivity() {
                     intent.flags =
                         Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
-                    finish()
                 }
                 create()
                 show()
